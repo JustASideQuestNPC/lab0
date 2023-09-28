@@ -1,0 +1,22 @@
+{
+  "target framerate": 60,
+  "show fps": true,
+  "sweetie 16 palette": {
+    "black": "ff1a1c2c",
+    "purple": "ff5d275d",
+    "red": "ffb13e53",
+    "orange": "ffef7d57",
+    "yellow": "ffffcd75",
+    "lime": "ffa7f070",
+    "green": "ff38b764",
+    "teal": "ff257179",
+    "blue": "ff3b5dc9",
+    "light blue": "ff41a6f6",
+    "dark blue": "ff29366f",
+    "cyan": "ff73eff7",
+    "white": "fff4f4f4",
+    "gray": "ff566c86",
+    "light gray": "ff94b0c2",
+    "dark gray": "ff333c57"
+  }
+}
