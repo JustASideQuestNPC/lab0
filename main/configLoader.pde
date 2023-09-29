@@ -40,5 +40,9 @@ void loadConfig(String path) {
   colorArray = new color[]{ black, purple, red, orange, yellow, lime, green, teal,
     blue, lightBlue, darkBlue, cyan, white, gray, lightGray, darkGray, transparent };
 
+  // load sprite data
+  JSONObject spriteJson = config.getJSONObject("sprites");
+  playerSpriteJson = spriteJson.getJSONObject("player");
+
   println("config loaded successfully!");
 }

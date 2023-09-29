@@ -18,6 +18,9 @@ void setup() {
 
   // setup the fps tracker if it is enabled
   if (showFPSTracker) fpsTracker = new FPSTracker();
+
+  // engine setup - this is for debugging and will be removed/replaced later
+  engine.addEntity(new Player());
 }
 
 void draw() {
@@ -33,7 +36,7 @@ void draw() {
     pixelCanvas.background(black);
 
     // draw everything in the engine to the canvas
-    engine.renderAll();
+    engine.renderAll(pixelCanvas);
 
   pixelCanvas.endDraw();
 

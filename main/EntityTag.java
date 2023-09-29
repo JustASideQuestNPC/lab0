@@ -3,6 +3,6 @@
  * and they can only be declared in a .java file for some reason. Anyway, this is
  * a bunch of different attributes that entities can have.
  */
-public enum Tag {
+public enum EntityTag {
   PLAYER
 };

@@ -24,4 +24,4 @@ GameClock clock = new GameClock();
 GameEngine engine = new GameEngine();
 
 /* entity data set from config.json */
-String playerSpritePath;
+JSONObject playerSpriteJson;

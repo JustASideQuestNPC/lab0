@@ -18,6 +18,14 @@
     "gray": "ff566c86",
     "light gray": "ff94b0c2",
     "dark gray": "ff333c57"
+  },
+  "sprites": {
+    "player": {
+      "sprite sheet": "../assets/sprites/spacefighter.png",
+      "frames": 3,
+      "frame rate": 8,
+      "frame width": 16,
+      "frame height": 16
+    }
   }
-  
 }

@@ -27,4 +27,9 @@ public class GameEngine {
     // calls the render method of every entity in the list
     entities.forEach((ent) -> ent.render(canvas));
   }
+
+  // renderAll overload that draws all entities to the main window
+  void renderAll() {
+    renderAll(g);
+  }
 }
