@@ -5,8 +5,6 @@ static final color fpsTrackerTextColor = 0xffffffff; // white
 
 /* fps tracker class */
 public class FPSTracker {
-  // holds the current time, used for finding the time between frames
-  private int currentTime;
   // holds the time since the last frame
   private int lastTimeDelta;
   // holds the frame times to average when finding the framerate
@@ -16,21 +14,17 @@ public class FPSTracker {
 
   // constructor
   FPSTracker() {
-    // millis() returns the number of milliseconds since the sketch started running
-    currentTime = millis();
     // initialize the frame times array - items in an int array default to 0, so there's no need to set them
     frameTimes = new int[frameBufferSize];
   }
 
   // updates the frame tracker with the time since the last frame
-  void update() {
+  void update(int dt) {
     // update the time since the last frame and add it to the array
-    lastTimeDelta = millis() - currentTime;
-    frameTimes[frameIndex] = lastTimeDelta;
+    lastTimeDelta = dt;
+    frameTimes[frameIndex] = dt;
     // update the frame index - using the modulo operator (%) here makes the index wrap to the beginning of the array once it reaches the end
     frameIndex = (frameIndex + 1) % frameBufferSize;
-    // update the current time
-    currentTime = millis();
   }
 
   // draws the tracker to the canvas. x and y are the top left corner

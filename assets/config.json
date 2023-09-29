@@ -1,6 +1,6 @@
 {
   "target framerate": 60,
-  "show fps": true,
+  "show fps": false,
   "sweetie 16 palette": {
     "black": "ff1a1c2c",
     "purple": "ff5d275d",
