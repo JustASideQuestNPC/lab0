@@ -1,12 +1,12 @@
 /* variable definitions */
 // if you have a variable that's a constant (i.e. it will never be changed),
 // it's convention to make it "static final"
-static final int[] windowSize = {800, 800}; // size of the window
-static final int upscaleFactor = 8;         // how large each pixel is
+// size of the *canvas* - this is the size that can be drawn to
+static final int canvasWidth = 128;
+static final int canvasHeight = 128;
 
-// width and height once pixels are upscaled
-static final int canvasWidth = windowSize[0] / upscaleFactor;
-static final int canvasHeight = windowSize[1] / upscaleFactor;
+// how large each pixel is
+static final int pixelSize = 6;
 
 // anything pixelated is drawn to this before being upscaled and drawn to the screen
 PGraphics pixelCanvas;
@@ -18,7 +18,7 @@ boolean showFPSTracker; // whether to display the actual framerate in the top le
 // the color palette for drawing things that aren't an image. for this lab, i'm using the
 // Sweetie 16 palette by Grafxkid (lospec.com/palette-list/sweetie-16)
 color black, purple, red, orange, yellow, lime, green, teal, blue, lightBlue, darkBlue,
-    cyan, white, gray, lightGray, darkGray, transparent;
+  cyan, white, gray, lightGray, darkGray, transparent;
 
 color[] colorArray; // array containing all colors, can be used to loop through them
 
@@ -29,7 +29,7 @@ FPSTracker fpsTracker;
 void setup() {
   // create the window and set it to the correct size
   size(100, 100);
-  windowResize(windowSize[0], windowSize[1]);
+  windowResize(canvasWidth * pixelSize, canvasHeight * pixelSize);
 
   // initialize the canvas to draw pixels to
   pixelCanvas = createGraphics(canvasWidth, canvasHeight);
@@ -59,9 +59,15 @@ void draw() {
     // to the normal window, except that everything starts with "[name]."
     pixelCanvas.background(white);
 
+    pixelCanvas.pushMatrix();
+    pixelCanvas.translate(canvasWidth / 2, canvasHeight / 2);
+    pixelCanvas.rotate(atan2(mouseY - height / 2, mouseX - width / 2));
+
     pixelCanvas.noStroke();
     pixelCanvas.fill(orange);
-    pixelCanvas.ellipse(50, 50, 50, 50);
+    pixelCanvas.rect(-24, -24, 48, 48);
+
+    pixelCanvas.popMatrix();
 
   pixelCanvas.endDraw();
 
@@ -71,6 +77,8 @@ void draw() {
   // draw the framerate tracker over the upscaled image if it is enabled
   if (showFPSTracker) fpsTracker.display(0, 0, 1.5);
 
+  // ++t is functionally identical to t++, but ++t is *slightly* faster. granted, the
+  // difference is so small that it'll never matter, but i'm also a perfectionist.
   ++t;
 }
 
@@ -113,8 +121,8 @@ void loadConfig(String path) {
   transparent = 0x00ffffff;
 
   // add all colors into the color array
-  colorArray = { black, purple, red, orange, yellow, lime, green, teal, blue,
-    lightBlue };
+  colorArray = new color[]{ black, purple, red, orange, yellow, lime, green, teal,
+    blue, lightBlue, darkBlue, cyan, white, gray, lightGray, darkGray, transparent };
 
   println("config loaded successfully!");
 }

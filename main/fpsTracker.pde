@@ -1,4 +1,4 @@
-/** globals **/
+/* globals */
 static final int frameBufferSize = 60; // the number of frame times to average when finding the framerate
 static final color fpsTrackerBackgroundColor = 0xc0000000; // slightly transparent black
 static final color fpsTrackerTextColor = 0xffffffff; // white
@@ -55,7 +55,7 @@ public class FPSTracker {
         fill(fpsTrackerTextColor);
         textAlign(LEFT, TOP);
         textSize(12);
-        text("time since last frame: " + lastTimeDelta + "ms\nest. framerate: " + estimatedFramerate + "fps", 0, 2);
+        text("time since last frame: " + lastTimeDelta + "ms\nest. framerate: " + estimatedFramerate + "fps", 5, 2);
       popMatrix();
     popStyle();
   }
