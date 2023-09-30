@@ -2,22 +2,22 @@
   "target framerate": 60,
   "show fps": false,
   "color palette": {
-    "black": "ff1a1c2c",
-    "purple": "ff5d275d",
-    "red": "ffb13e53",
-    "orange": "ffef7d57",
-    "yellow": "ffffcd75",
-    "lime": "ffa7f070",
-    "green": "ff38b764",
-    "teal": "ff257179",
-    "blue": "ff3b5dc9",
+    "black":      "ff1a1c2c",
+    "purple":     "ff5d275d",
+    "red":        "ffb13e53",
+    "orange":     "ffef7d57",
+    "yellow":     "ffffcd75",
+    "lime":       "ffa7f070",
+    "green":      "ff38b764",
+    "teal":       "ff257179",
+    "blue":       "ff3b5dc9",
     "light blue": "ff41a6f6",
-    "dark blue": "ff29366f",
-    "cyan": "ff73eff7",
-    "white": "fff4f4f4",
-    "gray": "ff566c86",
+    "dark blue":  "ff29366f",
+    "cyan":       "ff73eff7",
+    "white":      "fff4f4f4",
+    "gray":       "ff566c86",
     "light gray": "ff94b0c2",
-    "dark gray": "ff333c57"
+    "dark gray":  "ff333c57"
   },
   "entities": {
     "player": {
@@ -26,15 +26,27 @@
         "frames": 1,
         "frame rate": 8,
         "frame width": 16,
-        "frame height": 16
+        "frame height": 14
+      },
+      "movement speed": 80,
+      "shot delay": 0.5
+    },
+    "missile": {
+      "sprite": {
+        "sprite sheet": "../assets/sprites/missile.png",
+        "frames": 2,
+        "frame rate": 12,
+        "frame width": 6,
+        "frame height": 10
       },
       "movement speed": 100
     }
   },
   "controls": [
-    {"name": "move up", "keys": ["w", "up"]},
-    {"name": "move down", "keys": ["s", "down"]},
-    {"name": "move left", "keys": ["a", "left"]},
-    {"name": "move right", "keys": ["d", "right"]}
+    {"name": "move up",     "keys": ["w", "up"],    "mode": "continuous"},
+    {"name": "move down",   "keys": ["s", "down"],  "mode": "continuous"},
+    {"name": "move left",   "keys": ["a", "left"],  "mode": "continuous"},
+    {"name": "move right",  "keys": ["d", "right"], "mode": "continuous"},
+    {"name": "shoot",       "keys": ["z", "k"],     "mode": "continuous"}
   ]
 }

@@ -1,8 +1,9 @@
 /* animated sprite class - holds multiple PImages and swaps between them to do some simple animations */
-class AnimatedSprite {
+public class AnimatedSprite {
   private PImage spriteSheet;
   private PImage[] frames;
-  private int currentFrame, numFrames, frameWidth, frameHeight;
+  private int currentFrame, numFrames;
+  public int frameWidth, frameHeight;
   private float framesPerSecond, secondsPerFrame, frameTime; // used for timing
 
   // positive values play the animation normally, negative values play it in reverse, and 0 pauses it.

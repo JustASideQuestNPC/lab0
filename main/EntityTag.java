@@ -4,5 +4,6 @@
  * a bunch of different attributes that entities can have.
  */
 public enum EntityTag {
-  PLAYER
+  PLAYER,
+  MISSILE
 };

@@ -24,6 +24,7 @@ GameEngine engine;
 
 /* entity data set from config.json */
 JSONObject playerJson;
+JSONObject missileJson;
 
 /* input stuff */
 InputHandler inputs;

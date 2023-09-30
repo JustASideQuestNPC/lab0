@@ -39,8 +39,23 @@ void loadConfig(String path) {
   // set up inputs
   JSONArray controlBinds = config.getJSONArray("controls");
   for (int i = 0; i < controlBinds.size(); ++i) {
+    // load bind json and name
     JSONObject controlBind = controlBinds.getJSONObject(i);
     String controlName = controlBind.getString("name");
+
+    // convert activation mode from a string to the correct int
+    int controlMode = 0;
+    switch(controlBind.getString("mode")) {
+      case "continuous":
+        controlMode = CONTINUOUS;
+        break;
+      case "press only":
+        controlMode = PRESS_ONLY;
+        break;
+      case "release only":
+        controlMode = RELEASE_ONLY;
+        break;
+    }
 
     // do some questionable stuff to turn the set of keys - which are stored
     // in the JSON as an array of strings - into a *real* array of strings
@@ -48,12 +63,13 @@ void loadConfig(String path) {
     String[] controlKeys = new String[controlKeysRaw.size()];
     for (int j = 0; j < controlKeys.length; ++j) controlKeys[j] = controlKeysRaw.getString(j);
 
-    inputs.addInput(controlName, controlKeys);
+    inputs.addInput(controlName, controlKeys, controlMode);
   }
 
-  // load sprite data
+  // load entity data
   JSONObject entityJson = config.getJSONObject("entities");
   playerJson = entityJson.getJSONObject("player");
+  missileJson = entityJson.getJSONObject("missile");
 
   println("config loaded successfully!");
 }

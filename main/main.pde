@@ -25,7 +25,8 @@ void setup() {
   // engine setup - this is for debugging and will be removed/replaced later
   clock = new GameClock();
   engine = new GameEngine();
-  engine.addEntity(new Player(98, 98));
+  engine.addEntity(new Player(98, 98), 0);
+  engine.addEntity(new Missile(98, 150), -1);
 }
 
 void draw() {
@@ -41,6 +42,9 @@ void draw() {
   // update all loaded entities - the clock returns dt in milliseconds for extra precision, but 
   // game entities expect it in seconds
   engine.updateAll((float)dt / 1000);
+
+  // remove entities that are no longer needed
+  engine.garbageCollect();
 
   // draw pixelated things to the canvas
   pixelCanvas.beginDraw();
