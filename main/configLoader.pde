@@ -12,7 +12,7 @@ void loadConfig(String path) {
   showFPSTracker = config.getBoolean("show fps");
 
   // load color palette
-  JSONObject palette = config.getJSONObject("sweetie 16 palette");
+  JSONObject palette = config.getJSONObject("color palette");
   
   // .json doesn't support using 0x for hex numbers, so they have to be
   // stored as strings and then converted back when loaded
@@ -36,13 +36,24 @@ void loadConfig(String path) {
   // have it stored somewhere
   transparent = 0x00ffffff;
 
-  // add all colors into the color array
-  colorArray = new color[]{ black, purple, red, orange, yellow, lime, green, teal,
-    blue, lightBlue, darkBlue, cyan, white, gray, lightGray, darkGray, transparent };
+  // set up inputs
+  JSONArray controlBinds = config.getJSONArray("controls");
+  for (int i = 0; i < controlBinds.size(); ++i) {
+    JSONObject controlBind = controlBinds.getJSONObject(i);
+    String controlName = controlBind.getString("name");
+
+    // do some questionable stuff to turn the set of keys - which are stored
+    // in the JSON as an array of strings - into a *real* array of strings
+    JSONArray controlKeysRaw = controlBind.getJSONArray("keys");
+    String[] controlKeys = new String[controlKeysRaw.size()];
+    for (int j = 0; j < controlKeys.length; ++j) controlKeys[j] = controlKeysRaw.getString(j);
+
+    inputs.addInput(controlName, controlKeys);
+  }
 
   // load sprite data
-  JSONObject spriteJson = config.getJSONObject("sprites");
-  playerSpriteJson = spriteJson.getJSONObject("player");
+  JSONObject entityJson = config.getJSONObject("entities");
+  playerJson = entityJson.getJSONObject("player");
 
   println("config loaded successfully!");
 }

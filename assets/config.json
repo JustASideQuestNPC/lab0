@@ -1,7 +1,7 @@
 {
   "target framerate": 60,
   "show fps": false,
-  "sweetie 16 palette": {
+  "color palette": {
     "black": "ff1a1c2c",
     "purple": "ff5d275d",
     "red": "ffb13e53",
@@ -19,13 +19,22 @@
     "light gray": "ff94b0c2",
     "dark gray": "ff333c57"
   },
-  "sprites": {
+  "entities": {
     "player": {
-      "sprite sheet": "../assets/sprites/spacefighter.png",
-      "frames": 3,
-      "frame rate": 8,
-      "frame width": 16,
-      "frame height": 16
+      "sprite": {
+        "sprite sheet": "../assets/sprites/spacefighter.png",
+        "frames": 1,
+        "frame rate": 8,
+        "frame width": 16,
+        "frame height": 16
+      },
+      "movement speed": 100
     }
-  }
+  },
+  "controls": [
+    {"name": "move up", "keys": ["w", "up"]},
+    {"name": "move down", "keys": ["s", "down"]},
+    {"name": "move left", "keys": ["a", "left"]},
+    {"name": "move right", "keys": ["d", "right"]}
+  ]
 }

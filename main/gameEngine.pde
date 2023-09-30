@@ -11,7 +11,7 @@ public class GameEngine {
   // adds any object that inherits from EntitySuper and then returns a reference
   // to that object...i love generic/template functions :)
   <Ent extends EntitySuper> Ent addEntity(Ent entity) {
-    entity.engine = this;
+    //entity.engine = this;
     entities.add(entity);
     return entity;
   }

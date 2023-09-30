@@ -10,6 +10,9 @@ void setup() {
   // noSmooth() prevents images from becoming blurred when scaled up and makes them become pixelated instead
   noSmooth();
 
+  // initialize the input handler
+  inputs = new InputHandler();
+
   // load the config file from the data folder
   loadConfig(configPath);
 
@@ -20,14 +23,24 @@ void setup() {
   if (showFPSTracker) fpsTracker = new FPSTracker();
 
   // engine setup - this is for debugging and will be removed/replaced later
-  engine.addEntity(new Player());
+  clock = new GameClock();
+  engine = new GameEngine();
+  engine.addEntity(new Player(98, 98));
 }
 
 void draw() {
+  // update the input handler
+  inputs.update();
+
+  // tick the clock
   dt = clock.tick();
 
   // update the fps tracker if it is enabled
   if (showFPSTracker) fpsTracker.update(dt);
+
+  // update all loaded entities - the clock returns dt in milliseconds for extra precision, but 
+  // game entities expect it in seconds
+  engine.updateAll((float)dt / 1000);
 
   // draw pixelated things to the canvas
   pixelCanvas.beginDraw();
@@ -35,7 +48,7 @@ void draw() {
     // to the normal window, except that everything starts with "[name]."
     pixelCanvas.background(black);
 
-    // draw everything in the engine to the canvas
+    // render all loaded entities
     engine.renderAll(pixelCanvas);
 
   pixelCanvas.endDraw();
