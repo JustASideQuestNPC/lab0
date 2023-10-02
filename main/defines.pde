@@ -25,6 +25,7 @@ GameEngine engine;
 /* entity data set from config.json */
 JSONObject playerJson;
 JSONObject missileJson;
+JSONObject spiralLaserJson;
 
 /* input stuff */
 InputHandler inputs;

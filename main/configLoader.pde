@@ -70,6 +70,7 @@ void loadConfig(String path) {
   JSONObject entityJson = config.getJSONObject("entities");
   playerJson = entityJson.getJSONObject("player");
   missileJson = entityJson.getJSONObject("missile");
+  spiralLaserJson = entityJson.getJSONObject("spiral laser");
 
   println("config loaded successfully!");
 }

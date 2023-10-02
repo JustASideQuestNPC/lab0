@@ -40,6 +40,16 @@
         "frame height": 10
       },
       "movement speed": 100
+    },
+    "spiral laser": {
+      "sprite": {
+        "sprite sheet": "../assets/sprites/spiral-laser.png",
+        "frames": 8,
+        "frame rate": 35,
+        "frame width": 5,
+        "frame height": 13
+      },
+      "movement speed": 50
     }
   },
   "controls": [
@@ -47,6 +57,7 @@
     {"name": "move down",   "keys": ["s", "down"],  "mode": "continuous"},
     {"name": "move left",   "keys": ["a", "left"],  "mode": "continuous"},
     {"name": "move right",  "keys": ["d", "right"], "mode": "continuous"},
-    {"name": "shoot",       "keys": ["z", "k"],     "mode": "continuous"}
+    {"name": "shoot",       "keys": ["z", "k"],     "mode": "continuous"},
+    {"name": "left click",  "keys": ["left mouse"], "mode": "press only"}
   ]
 }

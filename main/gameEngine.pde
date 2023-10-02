@@ -3,6 +3,10 @@ public class GameEngine {
   // array of all stored entities
   private ArrayList<EntitySuper> entities;
 
+  // the engine holds a reference to the player because almost everything will want
+  // access to it at some point
+  Player player;
+
   // used to render some entities on top of others
   private int maxDisplayLayer = 0;
   private int minDisplayLayer = 0;

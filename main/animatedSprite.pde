@@ -3,8 +3,9 @@ public class AnimatedSprite {
   private PImage spriteSheet;
   private PImage[] frames;
   private int currentFrame, numFrames;
-  public int frameWidth, frameHeight;
+  int frameWidth, frameHeight;
   private float framesPerSecond, secondsPerFrame, frameTime; // used for timing
+  boolean loopAnimation;
 
   // positive values play the animation normally, negative values play it in reverse, and 0 pauses it.
   // setting it to < -1 or > 1 produces undefined behavior (in other words, I have no idea what will
@@ -35,8 +36,9 @@ public class AnimatedSprite {
     currentFrame = 0;
     // frameTime is the time spent displaying the current frame
     frameTime = 0;
-    // start out playing forward
+    // start out playing forward and looping
     playDirection = 1;
+    loopAnimation = true;
   }
 
   // updates the animation with the current time delta *in seconds* and changes to the next frame if needed
@@ -44,9 +46,8 @@ public class AnimatedSprite {
     frameTime += dt;
     if (frameTime >= secondsPerFrame) {
       frameTime = 0;
-      // adding the number of frames to this seems unnecessary, but it's required when the animation is
-      // playing backwards to prevent currentFrame from becoming negative and crashing the program
-      currentFrame = (currentFrame + playDirection + numFrames) % numFrames;
+      // advanceFrame() already checks whether to loop
+      advanceFrame(playDirection);
     }
   }
 
@@ -99,8 +100,38 @@ public class AnimatedSprite {
   }
 
   // moves the animation forward (relative to the play direction) by so many frames (to move backward,
-  // use a negative number). will wrap to the beginning/end of the animation if needed
+  // use a negative number). will wrap to the beginning/end of the animation if looping is enabled
   void advanceFrame(int f) {
-    currentFrame = (currentFrame + (f *playDirection) + numFrames) % numFrames;
+    currentFrame += f;
+    if (currentFrame < 0) {
+      if (loopAnimation) currentFrame = (currentFrame + numFrames) % numFrames;
+      else {
+        currentFrame = 0;
+        playDirection = 0;
+      }
+    }
+    else if (currentFrame >= numFrames) {
+      if (loopAnimation) currentFrame = currentFrame % numFrames;
+      else {
+        currentFrame = numFrames - 1;
+        playDirection = 0;
+      }
+    }
   }
+
+  // restarts the animation and plays it from the beginning. set reversed to true to play backwards from
+  // the end, or leave it blank to play forwards from the beginning
+  void restart(boolean reverse) {
+    if (reverse) {
+      playDirection = -1;
+      currentFrame = numFrames -1;
+    }
+    else {
+      playDirection = 1;
+      currentFrame = 0;
+    }
+  }
+
+  // overload to make reverse default to false
+  void restart() { restart(false); }
 }

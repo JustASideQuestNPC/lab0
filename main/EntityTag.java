@@ -5,5 +5,7 @@
  */
 public enum EntityTag {
   PLAYER,
-  MISSILE
+  MISSILE,
+  UFO,
+  SPIRAL_LASER
 };
