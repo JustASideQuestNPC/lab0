@@ -27,6 +27,17 @@ public class GameEngine {
     return entity;
   }
 
+  // returns every entity with the specified tag
+  ArrayList<EntitySuper> getTagged(EntityTag tag) {
+    ArrayList<EntitySuper> taggedEntities = new ArrayList<EntitySuper>();
+    for (int i = 0; i < entities.size(); ++i) {
+      if (entities.get(i).hasTag(tag)) {
+        taggedEntities.add(entities.get(i));
+      }
+    }
+    return taggedEntities;
+  }
+
   // updates all loaded entities
   void updateAll(float dt) {
     // calls the update method of every entity in the list

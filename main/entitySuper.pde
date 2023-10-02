@@ -5,10 +5,12 @@ public abstract class EntitySuper {
   // entities will need to change their tags depending on context
   ArrayList<EntityTag> tags;
   
-  // all entities have a sprite and position
+  // all entities have a sprite, a position, and a bounding box
   protected AnimatedSprite sprite;
-  protected float halfWidth, halfHeight;
+  protected float halfWidth, halfHeight; // used for centering the sprite
   PVector position;
+  CollideRect hitbox;
+  protected float hboxOffsetX, hboxOffsetY;
 
   // used in the engine to always display some entities on top of others
   int displayLayer;
@@ -16,17 +18,26 @@ public abstract class EntitySuper {
   boolean deleteMe;
 
   // base constructor that is shared by all entities
-  EntitySuper(JSONObject spriteJson, float x, float y, EntityTag[] tagList) {
+  EntitySuper(JSONObject entityJson, float x, float y, EntityTag[] tagList) {
     position = new PVector(x, y);
-    sprite = new AnimatedSprite(spriteJson);
+
+    // create sprite
+    sprite = new AnimatedSprite(entityJson.getJSONObject("sprite"));
     halfWidth = sprite.frameWidth / 2;
     halfHeight = sprite.frameHeight / 2;
-    deleteMe = false;
+
+    // create bounding box
+    JSONObject hitboxJson = entityJson.getJSONObject("hitbox");
+    hboxOffsetX = hitboxJson.getFloat("x");
+    hboxOffsetY = hitboxJson.getFloat("y");
+    hitbox = new CollideRect(0, 0, hitboxJson.getFloat("width"), hitboxJson.getFloat("height"));
 
     // i'm pretty sure there's a way to initialize an ArrayList with values
     // already inside it, but it seems like it's more trouble than it's worth
     tags = new ArrayList<EntityTag>();
     for (EntityTag t : tagList) tags.add(t);
+
+    deleteMe = false;
   }
 
   // every entity updates differently, so this is "pure abstract"
@@ -37,6 +48,13 @@ public abstract class EntitySuper {
     // floor the position to an integer to prevent the image from stretching when the position
     // is between two pixels
     sprite.render(floor(position.x - halfWidth), floor(position.y - halfHeight), canvas);
+
+    // draw the hitbox if the debug toggle for it is enabled
+    if (showHitboxes) {
+      canvas.noFill();
+      canvas.stroke(255, 0, 0);
+      canvas.rect(floor(hitbox.x), floor(hitbox.y), hitbox.w, hitbox.h);
+    }
   }
 
   // returns whether the entity has a tag

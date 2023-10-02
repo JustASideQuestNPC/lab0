@@ -6,7 +6,7 @@ class SpiralLaser extends EntitySuper {
   // constructor
   SpiralLaser(float x, float y) {
     // call the parent constructor to set position, load the sprite, and create the tag list
-    super(spiralLaserJson.getJSONObject("sprite"), x, y, new EntityTag[]{ EntityTag.SPIRAL_LASER });
+    super(spiralLaserJson, x, y, new EntityTag[]{EntityTag.SPIRAL_LASER});
 
     // load other data
     moveSpeed = spiralLaserJson.getFloat("movement speed");
@@ -29,7 +29,13 @@ class SpiralLaser extends EntitySuper {
     }
 
     // destroy the laser if it moves all the way off the screen
-    if (position.x < -halfWidth || position.x > canvasWidth + halfWidth ||
-      position.y < -halfHeight || position.y > canvasHeight + halfHeight) deleteMe = true;
+    if (position.x < -halfWidth || position.x > canvasWidth + halfWidth || position.y < -halfHeight || position.y > canvasHeight + halfHeight) {
+      deleteMe = true;
+      return;
+    };
+
+    // update hitbox position
+    hitbox.x = position.x + hboxOffsetX;
+    hitbox.y = position.y + hboxOffsetY;
   }
 }

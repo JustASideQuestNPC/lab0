@@ -5,7 +5,7 @@ public class Missile extends EntitySuper {
   // constructor
   Missile(float x, float y) {
     // call the parent constructor to set position, load the sprite, and create the tag list
-    super(missileJson.getJSONObject("sprite"), x, y, new EntityTag[]{ EntityTag.MISSILE });
+    super(missileJson, x, y, new EntityTag[]{EntityTag.MISSILE});
 
     // load other data
     moveSpeed = missileJson.getFloat("movement speed");
@@ -15,7 +15,7 @@ public class Missile extends EntitySuper {
   }
 
   // called every frame to update position, hitboxes, etc.
-  void update(float dt) {
+  void update(float dt) {    
     // update sprite animation
     sprite.update(dt);
 
@@ -23,7 +23,23 @@ public class Missile extends EntitySuper {
     position.y -= moveSpeed * dt;
 
     // destroy the missile if it moves all the way off the screen
-    if (position.x < -halfWidth || position.x > canvasWidth + halfWidth ||
-      position.y < -halfHeight || position.y > canvasHeight + halfHeight) deleteMe = true;
+    if (position.x < -halfWidth || position.x > canvasWidth + halfWidth || position.y < -halfHeight || position.y > canvasHeight + halfHeight) {
+      deleteMe = true;
+      return;
+    };
+
+      // update hitbox position
+    hitbox.x = position.x + hboxOffsetX;
+    hitbox.y = position.y + hboxOffsetY;
+
+    // check for collisions with enemies
+    ArrayList<EntitySuper> enemies = engine.getTagged(EntityTag.ENEMY); // get all enemies
+    for (int i = 0; i < enemies.size(); ++i) {
+      if (hitbox.intersects(enemies.get(i).hitbox)) {
+        enemies.get(i).deleteMe = true;
+        deleteMe = true;
+        return;
+      }
+    }
   }
 }

@@ -8,7 +8,7 @@ class Ufo extends EntitySuper {
   // constructor
   Ufo(float x, float y) {
     // call the parent constructor to set position, load the sprite, and create the tag list
-    super(ufoJson.getJSONObject("sprite"), x, y, new EntityTag[]{ EntityTag.UFO });
+    super(ufoJson, x, y, new EntityTag[]{EntityTag.UFO, EntityTag.ENEMY});
 
     // ufos only play their animation when they fire a laser
     sprite.loopAnimation = false;
@@ -35,7 +35,7 @@ class Ufo extends EntitySuper {
 
   // called every frame to update position, hitboxes, etc.
   void update(float dt) {
-    // update sprite - this will do nothing if the sprite isn't firing
+    // update sprite - this will do nothing if the ufo isn't firing
     sprite.update(dt);
 
     // ufos only move and attempt to fire if they aren't currently playing their firing animation
@@ -73,5 +73,9 @@ class Ufo extends EntitySuper {
         sprite.playDirection = 0;
         sprite.setFrame(0);
     }
+
+    // update hitbox position
+    hitbox.x = position.x + hboxOffsetX;
+    hitbox.y = position.y + hboxOffsetY;
   }
 }

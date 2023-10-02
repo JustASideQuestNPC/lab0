@@ -7,5 +7,6 @@ public enum EntityTag {
   PLAYER,
   MISSILE,
   UFO,
-  SPIRAL_LASER
+  SPIRAL_LASER,
+  ENEMY,
 };

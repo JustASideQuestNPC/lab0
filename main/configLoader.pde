@@ -13,6 +13,7 @@ void loadConfig(String path) {
   // load debug toggles
   print("loading debug toggles...");
   showFPSTracker = config.getBoolean("show fps");
+  showHitboxes = config.getBoolean("show hitboxes");
   println("complete");
 
   // load color palette

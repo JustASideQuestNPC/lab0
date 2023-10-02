@@ -9,7 +9,7 @@ public class Player extends EntitySuper {
   // constructor
   Player(float x, float y) {
     // call the parent constructor to set position, load the sprite, and create the tag list
-    super(playerJson.getJSONObject("sprite"), x, y, new EntityTag[]{ EntityTag.PLAYER });
+    super(playerJson, x, y, new EntityTag[]{EntityTag.PLAYER});
 
     // load other data
     moveSpeed = playerJson.getInt("movement speed");
@@ -59,5 +59,9 @@ public class Player extends EntitySuper {
     // clamp position to stay onscreen
     position.x = constrain(position.x, halfWidth, canvasWidth - halfWidth);
     position.y = constrain(position.y, halfHeight, canvasHeight - halfHeight);
+
+    // update hitbox position
+    hitbox.x = position.x + hboxOffsetX;
+    hitbox.y = position.y + hboxOffsetY;
   }
 }

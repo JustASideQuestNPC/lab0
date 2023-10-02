@@ -12,10 +12,11 @@ color black, purple, red, orange, yellow, lime, green, teal, blue, lightBlue, da
 /* config vars - these are set from config.json during setup() */
 String configPath = "../assets/config.json";  // the path to the .json file containing settings and other data
 int targetFramerate;
-boolean showFPSTracker;
 
 /* debug stuff */
+boolean showFPSTracker;
 FPSTracker fpsTracker;
+boolean showHitboxes;
 
 /* clock/engine stuff */
 int dt; // time since the last update
