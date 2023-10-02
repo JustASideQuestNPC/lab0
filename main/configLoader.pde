@@ -6,15 +6,20 @@ void loadConfig(String path) {
   JSONObject config = loadJSONObject(path);
   
   // load graphics config
+  print("loading graphics config...");
   targetFramerate = config.getInt("target framerate");
+  println("complete");
 
   // load debug toggles
+  print("loading debug toggles...");
   showFPSTracker = config.getBoolean("show fps");
+  println("complete");
 
   // load color palette
+  print("loading colors...");
   JSONObject palette = config.getJSONObject("color palette");
   
-  // .json doesn't support using 0x for hex numbers, so they have to be
+  // json doesn't support using 0x for hex numbers, so they have to be
   // stored as strings and then converted back when loaded
   black = unhex(palette.getString("black"));
   purple = unhex(palette.getString("purple"));
@@ -35,8 +40,10 @@ void loadConfig(String path) {
   // the transparent color isn't part of the the palette, but it's nice to
   // have it stored somewhere
   transparent = 0x00ffffff;
+  println("complete");
 
   // set up inputs
+  print("loading input bindings...");
   JSONArray controlBinds = config.getJSONArray("controls");
   for (int i = 0; i < controlBinds.size(); ++i) {
     // load bind json and name
@@ -65,12 +72,16 @@ void loadConfig(String path) {
 
     inputs.addInput(controlName, controlKeys, controlMode);
   }
+  println("complete");
 
   // load entity data
+  print("loading entity data...");
   JSONObject entityJson = config.getJSONObject("entities");
   playerJson = entityJson.getJSONObject("player");
   missileJson = entityJson.getJSONObject("missile");
   spiralLaserJson = entityJson.getJSONObject("spiral laser");
+  ufoJson = entityJson.getJSONObject("ufo");
+  println("complete");
 
   println("config loaded successfully!");
 }

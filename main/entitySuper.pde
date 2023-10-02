@@ -1,7 +1,10 @@
 /* parent entity class that all entities inherit from */
 public abstract class EntitySuper {
-  // each entity type has different tags, but they all have them
-  EntityTag[] tags;
+  // each entity type has different tags, but they all have them.
+  // PS this is an ArrayList instead of an array because some
+  // entities will need to change their tags depending on context
+  ArrayList<EntityTag> tags;
+  
   // all entities have a sprite and position
   protected AnimatedSprite sprite;
   protected float halfWidth, halfHeight;
@@ -13,12 +16,17 @@ public abstract class EntitySuper {
   boolean deleteMe;
 
   // base constructor that is shared by all entities
-  EntitySuper(JSONObject spriteJson, float x, float y) {
+  EntitySuper(JSONObject spriteJson, float x, float y, EntityTag[] tagList) {
     position = new PVector(x, y);
     sprite = new AnimatedSprite(spriteJson);
     halfWidth = sprite.frameWidth / 2;
     halfHeight = sprite.frameHeight / 2;
     deleteMe = false;
+
+    // i'm pretty sure there's a way to initialize an ArrayList with values
+    // already inside it, but it seems like it's more trouble than it's worth
+    tags = new ArrayList<EntityTag>();
+    for (EntityTag t : tagList) tags.add(t);
   }
 
   // every entity updates differently, so this is "pure abstract"
@@ -33,7 +41,7 @@ public abstract class EntitySuper {
 
   // returns whether the entity has a tag
   boolean hasTag(EntityTag t) {
-    // you don't need brackets if there's only one line in your dfor loop, and you *also* don't need brackets if there's only one line on your if statement
+    // you don't need brackets if there's only one line in your for loop, and you *also* don't need brackets if there's only one line on your if statement
     for (EntityTag i : tags) if (i == t) return true;
     return false;
   }

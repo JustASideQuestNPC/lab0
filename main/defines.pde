@@ -26,6 +26,7 @@ GameEngine engine;
 JSONObject playerJson;
 JSONObject missileJson;
 JSONObject spiralLaserJson;
+JSONObject ufoJson;
 
 /* input stuff */
 InputHandler inputs;

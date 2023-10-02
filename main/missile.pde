@@ -2,17 +2,19 @@
 public class Missile extends EntitySuper {
   private float moveSpeed;
 
+  // constructor
   Missile(float x, float y) {
-    // call the parent constructor to load the sprite
-    super(missileJson.getJSONObject("sprite"), x, y);
+    // call the parent constructor to set position, load the sprite, and create the tag list
+    super(missileJson.getJSONObject("sprite"), x, y, new EntityTag[]{ EntityTag.MISSILE });
 
     // load other data
     moveSpeed = missileJson.getFloat("movement speed");
 
-    // tags have to be set in the constructor because arrays are weird in java
-    tags = new EntityTag[]{ EntityTag.MISSILE };
+    // set display layer
+    displayLayer = -1;
   }
 
+  // called every frame to update position, hitboxes, etc.
   void update(float dt) {
     // update sprite animation
     sprite.update(dt);

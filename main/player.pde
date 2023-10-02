@@ -8,19 +8,19 @@ public class Player extends EntitySuper {
 
   // constructor
   Player(float x, float y) {
-    // call the parent constructor to load the sprite and set the position
-    super(playerJson.getJSONObject("sprite"), x, y);
+    // call the parent constructor to set position, load the sprite, and create the tag list
+    super(playerJson.getJSONObject("sprite"), x, y, new EntityTag[]{ EntityTag.PLAYER });
 
-    // load other data from json
+    // load other data
     moveSpeed = playerJson.getInt("movement speed");
     shotDelay = playerJson.getFloat("shot delay");
     shotTimer = 0;
 
-    // tags have to be set in the constructor because arrays are weird in java
-    tags = new EntityTag[]{ EntityTag.PLAYER };
+    // set display layer
+    displayLayer = 0;
   }
   
-  // updates the player
+  // called every frame to update position, hitboxes, etc.
   void update(float dt) {
     // update sprite animation
     sprite.update(dt);
@@ -48,7 +48,7 @@ public class Player extends EntitySuper {
 
     if (inputs.getState("shoot") && shotTimer <= 0) {
       // add a missile entity to the engine (this is why entities hold a reference to their engine)
-      engine.addEntity(new Missile(position.x, position.y), -1);
+      engine.addEntity(new Missile(position.x, position.y));
       shotTimer = shotDelay;
     }
 
@@ -56,7 +56,7 @@ public class Player extends EntitySuper {
     moveDelta.mult(dt);
     position.add(moveDelta);
 
-    // clamp position to keep the player onscreen
+    // clamp position to stay onscreen
     position.x = constrain(position.x, halfWidth, canvasWidth - halfWidth);
     position.y = constrain(position.y, halfHeight, canvasHeight - halfHeight);
   }

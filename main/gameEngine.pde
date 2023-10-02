@@ -17,12 +17,11 @@ public class GameEngine {
   }
 
   // adds any object that inherits from EntitySuper and then returns a reference
-  // to that object...i love generic/template functions :)
-  <Ent extends EntitySuper> Ent addEntity(Ent entity, int displayLayer) {
-    // set display layer
-    entity.displayLayer = displayLayer;
-    if (displayLayer < minDisplayLayer) minDisplayLayer = displayLayer;
-    else if (displayLayer > maxDisplayLayer) maxDisplayLayer = displayLayer;
+  // to that object...i love polymorphism :)
+  <Ent extends EntitySuper> Ent addEntity(Ent entity) {
+    // update the highest/lowest display layers
+    if (entity.displayLayer < minDisplayLayer) minDisplayLayer = entity.displayLayer;
+    else if (entity.displayLayer > maxDisplayLayer) maxDisplayLayer = entity.displayLayer;
 
     entities.add(entity);
     return entity;
@@ -41,15 +40,17 @@ public class GameEngine {
     // repeatedly loop through the entities and draw them layer by layer
     for (int i = minDisplayLayer; i <= maxDisplayLayer; ++i) {
       final int layer = i;
+      // forEach does basically the same thing as updateAll does: it loops
+      // through an array and does something to every item in it (in this case,
+      // it renders each entity on the current display later). If you're
+      // wondering why I didn't use this in updateAll, it's because some entities
+      // add new entities to the engine (like when the player fires a missile),
+      // and doing that in the middle of a forEach will instantly throw an error
+      // and freeze the window until task manager kills it :/
       entities.forEach((ent) -> {
         if (ent.displayLayer == layer) ent.render(canvas);
       });
     }
-  }
-
-  // renderAll overload that draws all entities to the main window
-  void renderAll() {
-    renderAll(g);
   }
 
   // removes entities that are no longer needed

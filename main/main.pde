@@ -25,7 +25,8 @@ void setup() {
   // engine setup - this is for debugging and will be removed/replaced later
   clock = new GameClock();
   engine = new GameEngine();
-  engine.player = engine.addEntity(new Player(98, 98), 0);
+  engine.player = engine.addEntity(new Player(98, 180));
+  engine.addEntity(new Ufo(98, 15));
 }
 
 void draw() {
@@ -61,8 +62,4 @@ void draw() {
 
   // draw the framerate tracker over the upscaled image if it is enabled
   if (showFPSTracker) fpsTracker.display(0, 0, 1.5);
-
-  if (inputs.getState("left click")) {
-    println("player position: (" + floor(engine.player.position.x) + ", " + floor(engine.player.position.y) + ")");
-  }
 }
