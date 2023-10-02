@@ -59,7 +59,7 @@
         "frame width": 19,
         "frame height": 29
       },
-      "movement speed": 40,
+      "movement speed": 30,
       "shot interval": 2,
       "shot chance": 50,
       "shot spawn offset": [0, 8]
