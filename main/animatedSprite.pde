@@ -43,6 +43,8 @@ public class AnimatedSprite {
 
   // updates the animation with the current time delta *in seconds* and changes to the next frame if needed
   void update(float dt) {
+    if (playDirection == 0) return; // end immediately if the animation is paused
+    
     frameTime += dt;
     if (frameTime >= secondsPerFrame) {
       frameTime = 0;
@@ -61,18 +63,9 @@ public class AnimatedSprite {
     canvas.popStyle();
   }
 
-  // overloads for default parameters and such
+  // overloads for default width and height
   void render(float x, float y, PGraphics canvas) {
     render(x, y, frameWidth, frameHeight, canvas);
-  }
-  void render(float x, float y, float w, float h) {
-    // the main canvas is actually just another PGraphics object, but it doesn't require a classname to
-    // use in most cases. if you want to use the classname (for example, if you want to use it in a
-    // function that *does* use the classname), it's equal to "g". Kinda confusing, tbh.
-    render(x, y, w, h, g);
-  }
-  void render(float x, float y) {
-    render(x, y, frameWidth, frameHeight, g);
   }
 
   // sets the play speed in frames per second. setting it to 0 will cause the animation to change frames
@@ -98,6 +91,9 @@ public class AnimatedSprite {
   void setFrame(int f) {
     currentFrame = f;
   }
+
+  // gets the current frame
+  int getFrameIndex() { return currentFrame; }
 
   // moves the animation forward (relative to the play direction) by so many frames (to move backward,
   // use a negative number). will wrap to the beginning/end of the animation if looping is enabled

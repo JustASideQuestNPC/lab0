@@ -26,7 +26,7 @@ void setup() {
   clock = new GameClock();
   engine = new GameEngine();
   engine.player = engine.addEntity(new Player(98, 180));
-  engine.addEntity(new Ufo(98, 15));
+  engine.addEntity(new Ufo(98, 20));
 }
 
 void draw() {

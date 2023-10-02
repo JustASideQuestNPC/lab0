@@ -45,21 +45,24 @@
       "sprite": {
         "sprite sheet": "../assets/sprites/spiral-laser.png",
         "frames": 8,
-        "frame rate": 35,
+        "frame rate": 0,
         "frame width": 5,
         "frame height": 13
       },
-      "movement speed": 50
+      "movement speed": 35
     },
     "ufo": {
       "sprite": {
         "sprite sheet": "../assets/sprites/ufo.png",
-        "frames": 11,
-        "frame rate": 30,
+        "frames": 20,
+        "frame rate": 35,
         "frame width": 19,
-        "frame height": 17
+        "frame height": 29
       },
-      "movement speed": 40
+      "movement speed": 40,
+      "shot interval": 2,
+      "shot chance": 50,
+      "shot spawn offset": [0, 8]
     }
   },
   "controls": [
