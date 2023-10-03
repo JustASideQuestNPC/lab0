@@ -24,7 +24,7 @@ public class CollideRect {
 
   // returns true if a rectangle intersects with this rectangle
   boolean intersects(float rx, float ry, float rw, float rh) {
-    return (x <= (rx + rh) && rx <= (x + w) && y <= (ry + rh) && ry <= (y + h));
+    return (x <= (rx + rw) && rx <= (x + w) && y <= (ry + rh) && ry <= (y + h));
   }
 
   // overload that takes another CollideRect

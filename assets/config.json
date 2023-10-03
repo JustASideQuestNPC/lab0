@@ -1,7 +1,7 @@
 {
   "target framerate": 60,
   "show fps": false,
-  "show hitboxes": true,
+  "show hitboxes": false,
   "color palette": {
     "black":      "ff1a1c2c",
     "purple":     "ff5d275d",

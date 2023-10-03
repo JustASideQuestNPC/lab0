@@ -1,8 +1,8 @@
 // NOTE: if you have a variable that's a constant (i.e. it will never be changed), it's convention to make it "static final"
 
 /* canvas/graphics declarations */
-static final int canvasWidth = 196;   // max drawable width
-static final int canvasHeight = 196;  // max drawable height
+static final int canvasWidth = 240;   // max drawable width
+static final int canvasHeight = 180;  // max drawable height
 static final int pixelSize = 4;       // how large each pixel is
 PGraphics pixelCanvas;                // anything pixelated is drawn to this before being upscaled and drawn to the screen
 
