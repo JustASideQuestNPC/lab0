@@ -19,9 +19,10 @@ FPSTracker fpsTracker;
 boolean showHitboxes;
 
 /* clock/engine stuff */
-int dt; // time since the last update
+float dt; // time since the last update in milliseconds
 GameClock clock;
 GameEngine engine;
+Player player; // used mainly for drawing the hud, also referenced by other entitites
 
 /* entity data set from config.json */
 JSONObject playerJson;
@@ -31,3 +32,7 @@ JSONObject ufoJson;
 
 /* input stuff */
 InputHandler inputs;
+
+/* hud stuff */
+PImage hpBarBackground, hpBarText, hpBarSegment;
+AnimatedSprite hpBarCaution;

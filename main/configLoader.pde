@@ -1,13 +1,19 @@
 /* loads the data from config.json into assorted variables */
 void loadConfig(String path) {
   println("loading config from " + path);
+  float startTime = millis();
 
   // load the entire config file into a variable
   JSONObject config = loadJSONObject(path);
   
-  // load graphics config
+  // load graphics config + hud images
   print("loading graphics config...");
   targetFramerate = config.getInt("target framerate");
+
+  hpBarBackground = loadImage("../assets/sprites/healthbar-background.png");
+  hpBarText = loadImage("../assets/sprites/healthbar-text.png");
+  hpBarSegment = loadImage("../assets/sprites/healthbar-segment.png");
+  hpBarCaution = new AnimatedSprite(config.getJSONObject("healthbar caution sprite"));
   println("complete");
 
   // load debug toggles
@@ -84,5 +90,5 @@ void loadConfig(String path) {
   ufoJson = entityJson.getJSONObject("ufo");
   println("complete");
 
-  println("config loaded successfully!");
+  println("config loaded successfully in " + (millis() - startTime) + "ms");
 }

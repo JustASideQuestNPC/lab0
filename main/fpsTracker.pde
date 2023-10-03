@@ -6,20 +6,20 @@ static final color fpsTrackerTextColor = 0xffffffff; // white
 /* fps tracker class */
 public class FPSTracker {
   // holds the time since the last frame
-  private int lastTimeDelta;
+  private float lastTimeDelta;
   // holds the frame times to average when finding the framerate
-  private int[] frameTimes;
+  private float[] frameTimes;
   // the index to store the next frame time in
   private int frameIndex = 0;
 
   // constructor
   FPSTracker() {
     // initialize the frame times array - items in an int array default to 0, so there's no need to set them
-    frameTimes = new int[frameBufferSize];
+    frameTimes = new float[frameBufferSize];
   }
 
   // updates the frame tracker with the time since the last frame
-  void update(int dt) {
+  void update(float dt) {
     // update the time since the last frame and add it to the array
     lastTimeDelta = dt;
     frameTimes[frameIndex] = dt;
@@ -31,7 +31,7 @@ public class FPSTracker {
   void display(int x, int y, float scaleFactor) {
     // sum the values in the tracker and divide to find the average frame time
     float avgDelta = 0;
-    for (int i : frameTimes) avgDelta += i;
+    for (float i : frameTimes) avgDelta += i;
     avgDelta /= frameBufferSize;
 
     // divide to find the estimated frame rate, then round down to get a number that isn't 20 digits long

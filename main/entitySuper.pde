@@ -5,12 +5,13 @@ public abstract class EntitySuper {
   // entities will need to change their tags depending on context
   ArrayList<EntityTag> tags;
   
-  // all entities have a sprite, a position, and a bounding box
+  // all entities have these
   protected AnimatedSprite sprite;
   protected float halfWidth, halfHeight; // used for centering the sprite
   PVector position;
   CollideRect hitbox;
   protected float hboxOffsetX, hboxOffsetY;
+  int maxHealth, currentHealth;
 
   // used in the engine to always display some entities on top of others
   int displayLayer;
@@ -32,6 +33,10 @@ public abstract class EntitySuper {
     hboxOffsetY = hitboxJson.getFloat("y");
     hitbox = new CollideRect(0, 0, hitboxJson.getFloat("width"), hitboxJson.getFloat("height"));
 
+    // load other data
+    maxHealth = entityJson.getInt("max hp");
+    currentHealth = maxHealth;
+
     // i'm pretty sure there's a way to initialize an ArrayList with values
     // already inside it, but it seems like it's more trouble than it's worth
     tags = new ArrayList<EntityTag>();
@@ -40,7 +45,7 @@ public abstract class EntitySuper {
     deleteMe = false;
   }
 
-  // every entity updates differently, so this is "pure abstract"
+  // every entity updates differently, so this doesn't need to be defined
   abstract void update(float dt);
 
   // all entities will render their sprite, so this is defined oncec here
@@ -55,6 +60,12 @@ public abstract class EntitySuper {
       canvas.stroke(255, 0, 0);
       canvas.rect(floor(hitbox.x), floor(hitbox.y), hitbox.w, hitbox.h);
     }
+  }
+
+  // called whenever something deals damage to an entity
+  void dealDamage(int damage) {
+    currentHealth -= damage;
+    if (currentHealth <= 0) deleteMe = true;
   }
 
   // returns whether the entity has a tag

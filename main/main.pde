@@ -25,7 +25,7 @@ void setup() {
   // engine setup - this is for debugging and will be removed/replaced later
   clock = new GameClock();
   engine = new GameEngine();
-  engine.player = engine.addEntity(new Player(98, 180));
+  player = engine.addEntity(new Player(98, 170));
   engine.addEntity(new Ufo(98, 20));
 }
 
@@ -39,9 +39,12 @@ void draw() {
   // update the fps tracker if it is enabled
   if (showFPSTracker) fpsTracker.update(dt);
 
+  // all other updates expect dt in seconds
+  dt /= 1000;
+
   // update all loaded entities - the clock returns dt in milliseconds for extra precision, but 
   // game entities expect it in seconds
-  engine.updateAll((float)dt / 1000);
+  engine.updateAll(dt);
 
   // remove entities that are no longer needed
   engine.garbageCollect();
@@ -49,12 +52,14 @@ void draw() {
   // draw pixelated things to the canvas
   pixelCanvas.beginDraw();
     // after beginDraw, drawing to a PGraphics object works exactly the same as drawing
-    // to the normal window, except that everything starts with "[name]."
+    // to the normal window, except that everything starts with "name."
     pixelCanvas.background(black);
 
     // render all loaded entities
     engine.renderAll(pixelCanvas);
 
+    // render the hud
+    drawHud(pixelCanvas, dt);
   pixelCanvas.endDraw();
 
   // PGraphics objects can be drawn to the screen in the same way as PImage objects

@@ -36,7 +36,8 @@
         "height": 6
       },
       "movement speed": 80,
-      "shot delay": 0.5
+      "shot delay": 0.5,
+      "max hp": 1
     },
     "missile": {
       "sprite": {
@@ -52,7 +53,9 @@
         "width": 1,
         "height": 7
       },
-      "movement speed": 120
+      "movement speed": 120,
+      "max hp": 1,
+      "damage": 1
     },
     "spiral laser": {
       "sprite": {
@@ -68,7 +71,8 @@
         "width": 4,
         "height": 12
       },
-      "movement speed": 35
+      "movement speed": 35,
+      "max hp": 1
     },
     "ufo": {
       "sprite": {
@@ -85,10 +89,18 @@
         "height": 3
       },
       "movement speed": 30,
+      "max hp": 1,
       "shot interval": 2,
       "shot chance": 50,
       "shot spawn offset": [0, 8]
     }
+  },
+  "healthbar caution sprite": {
+    "sprite sheet": "../assets/sprites/healthbar-caution.png",
+    "frames": 2,
+    "frame rate": 2,
+    "frame width": 51,
+    "frame height": 7
   },
   "controls": [
     {"name": "move up",     "keys": ["w", "up"],    "mode": "continuous"},
