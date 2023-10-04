@@ -64,4 +64,9 @@ public class GameEngine {
   void garbageCollect() {
     entities.removeIf(e -> (e.deleteMe));
   };
+
+  // clears the entity list
+  void purgeEntities() {
+    entities.clear();
+  }
 }

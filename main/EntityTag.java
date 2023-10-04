@@ -9,4 +9,5 @@ public enum EntityTag {
   UFO,
   SPIRAL_LASER,
   ENEMY,
+  PARTICLE
 };

@@ -5,7 +5,6 @@ public class Player extends EntitySuper {
   // for timing missile shots
   private float shotDelay, shotTimer;
   
-
   // constructor
   Player(float x, float y) {
     // call the parent constructor to set position, load the sprite, and create the tag list

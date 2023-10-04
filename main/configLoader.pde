@@ -8,7 +8,11 @@ void loadConfig(String path) {
   
   // load graphics config and hud images
   print("loading graphics config...");
-  targetFramerate = config.getInt("target framerate");
+  JSONObject graphics = config.getJSONObject("graphics");
+  targetFramerate = graphics.getInt("target framerate");
+  speedlineLengths = jsonToIntArray(graphics.getJSONArray("speedline lengths"));
+  speedlineSpeeds = jsonToIntArray(graphics.getJSONArray("speedline speeds"));
+  speedlinesPerLayer = jsonToIntArray(graphics.getJSONArray("speedlines per layer"));
 
   hpBarBackground = loadImage("../assets/sprites/healthbar-background.png");
   hpBarText = loadImage("../assets/sprites/healthbar-text.png");
@@ -20,8 +24,10 @@ void loadConfig(String path) {
 
   // load debug toggles
   print("loading debug toggles...");
-  showFPSTracker = config.getBoolean("show fps");
-  showHitboxes = config.getBoolean("show hitboxes");
+  JSONObject debug = config.getJSONObject("debug");
+  showFPSTracker = debug.getBoolean("show fps");
+  showHitboxes = debug.getBoolean("show hitboxes");
+  noSpeedlines = debug.getBoolean("disable speedlines");
   println("complete");
 
   // load color palette
@@ -73,11 +79,8 @@ void loadConfig(String path) {
         break;
     }
 
-    // do some questionable stuff to turn the set of keys - which are stored
-    // in the JSON as an array of strings - into a *real* array of strings
-    JSONArray controlKeysRaw = controlBind.getJSONArray("keys");
-    String[] controlKeys = new String[controlKeysRaw.size()];
-    for (int j = 0; j < controlKeys.length; ++j) controlKeys[j] = controlKeysRaw.getString(j);
+    // convert keys from a JSONArray of strings to a real array of strings
+    String[] controlKeys = jsonToStringArray(controlBind.getJSONArray("keys"));
 
     inputs.addInput(controlName, controlKeys, controlMode);
   }

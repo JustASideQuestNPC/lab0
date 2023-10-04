@@ -5,7 +5,7 @@ public abstract class EntitySuper {
   // entities will need to change their tags depending on context
   ArrayList<EntityTag> tags;
   
-  // all entities have these
+  // (almost) all entities have these
   protected AnimatedSprite sprite;
   protected float halfWidth, halfHeight; // used for centering the sprite
   PVector position;
@@ -22,33 +22,42 @@ public abstract class EntitySuper {
   EntitySuper(JSONObject entityJson, float x, float y, EntityTag[] tagList) {
     position = new PVector(x, y);
 
-    // create sprite
-    sprite = new AnimatedSprite(entityJson.getJSONObject("sprite"));
-    halfWidth = sprite.frameWidth / 2;
-    halfHeight = sprite.frameHeight / 2;
-
-    // create bounding box
-    JSONObject hitboxJson = entityJson.getJSONObject("hitbox");
-    hboxOffsetX = hitboxJson.getFloat("x");
-    hboxOffsetY = hitboxJson.getFloat("y");
-    hitbox = new CollideRect(0, 0, hitboxJson.getFloat("width"), hitboxJson.getFloat("height"));
-
-    // load other data
-    maxHealth = entityJson.getInt("max hp");
-    currentHealth = maxHealth;
-
     // i'm pretty sure there's a way to initialize an ArrayList with values
     // already inside it, but it seems like it's more trouble than it's worth
     tags = new ArrayList<EntityTag>();
     for (EntityTag t : tagList) tags.add(t);
 
     deleteMe = false;
+
+    // the speedline entity doesn't have any .json data, so it passes a null object and skips any loading
+    if (entityJson == null) return;
+
+    // create sprite - some entities won't have a sprite, so we do a check to make sure we don't crash the program
+    // by trying to create a sprite that doesn't exist (we also do the same check for the hitbox and any other data)
+    if (entityJson.hasKey("sprite"))  {
+      sprite = new AnimatedSprite(entityJson.getJSONObject("sprite"));
+      halfWidth = sprite.frameWidth / 2;
+      halfHeight = sprite.frameHeight / 2;
+    }
+
+    // create hitbox
+    if (entityJson.hasKey("hitbox")) {
+      JSONObject hitboxJson = entityJson.getJSONObject("hitbox");
+      hboxOffsetX = hitboxJson.getFloat("x");
+      hboxOffsetY = hitboxJson.getFloat("y");
+      hitbox = new CollideRect(0, 0, hitboxJson.getFloat("width"), hitboxJson.getFloat("height"));
+    }
+
+    if (entityJson.hasKey("max hp")) {
+      maxHealth = entityJson.getInt("max hp");
+      currentHealth = maxHealth;
+    }
   }
 
   // every entity updates differently, so this doesn't need to be defined
   abstract void update(float dt);
 
-  // all entities will render their sprite, so this is defined oncec here
+  // all entities will render their sprite, so this is defined once here
   void render(PGraphics canvas) {
     // floor the position to an integer to prevent the image from stretching when the position
     // is between two pixels

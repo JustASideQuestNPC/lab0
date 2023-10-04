@@ -1,7 +1,15 @@
 {
-  "target framerate": 60,
-  "show fps": false,
-  "show hitboxes": false,
+  "debug": {
+    "show fps": false,
+    "show hitboxes": false,
+    "disable speedlines": false
+  },
+  "graphics": {
+    "target framerate": 60,
+    "speedline lengths": [1, 5, 10, 15, 25, 40],
+    "speedline speeds": [30, 50, 100, 150, 250, 500],
+    "speedlines per layer": [5, 3, 2, 2, 1, 1]
+  },
   "color palette": {
     "black":      "ff1a1c2c",
     "purple":     "ff5d275d",
@@ -37,7 +45,7 @@
       },
       "movement speed": 80,
       "shot delay": 0.5,
-      "max hp": 1
+      "max hp": 5
     },
     "missile": {
       "sprite": {
@@ -54,7 +62,6 @@
         "height": 7
       },
       "movement speed": 120,
-      "max hp": 1,
       "damage": 1
     },
     "spiral laser": {
@@ -71,15 +78,14 @@
         "width": 4,
         "height": 12
       },
-      "movement speed": 35,
-      "max hp": 1,
+      "movement speed": 40,
       "damage": 1
     },
     "ufo": {
       "sprite": {
         "sprite sheet": "../assets/sprites/ufo.png",
         "frames": 20,
-        "frame rate": 35,
+        "frame rate": 40,
         "frame width": 19,
         "frame height": 29
       },

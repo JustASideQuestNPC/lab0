@@ -19,14 +19,13 @@ void setup() {
   // set the target framerate
   frameRate(targetFramerate);
 
-  // setup the fps tracker if it is enabled
+  // initialize the fps tracker if it is enabled
   if (showFPSTracker) fpsTracker = new FPSTracker();
 
-  // engine setup - this is for debugging and will be removed/replaced later
+  // initialize the engine/clock
   clock = new GameClock();
   engine = new GameEngine();
-  player = engine.addEntity(new Player(canvasWidth / 2, 170));
-  engine.addEntity(new Ufo(canvasWidth / 2, 30));
+  initializeEntityList();
 }
 
 void draw() {
