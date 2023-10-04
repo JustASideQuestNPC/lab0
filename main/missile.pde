@@ -1,7 +1,7 @@
 /* missile class */
 public class Missile extends EntitySuper {
   private float moveSpeed;
-  private int damage;
+  private int dmg;
 
   // constructor
   Missile(float x, float y) {
@@ -10,7 +10,7 @@ public class Missile extends EntitySuper {
 
     // load other data
     moveSpeed = missileJson.getFloat("movement speed");
-    damage = missileJson.getInt("damage");
+    dmg = missileJson.getInt("damage");
 
     // set display layer
     displayLayer = -1;
@@ -38,7 +38,7 @@ public class Missile extends EntitySuper {
     ArrayList<EntitySuper> enemies = engine.getTagged(EntityTag.ENEMY); // get all enemies
     for (int i = 0; i < enemies.size(); ++i) {
       if (hitbox.intersects(enemies.get(i).hitbox)) {
-        enemies.get(i).dealDamage(damage);
+        enemies.get(i).damage(dmg);
         deleteMe = true;
         return;
       }

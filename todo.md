@@ -1,7 +1,4 @@
 ## Code Red!!
-- Collisions
-- Player and enemy damage/health
-  - HUD with healthbar
 - Procedural enemy spawning
 
 ## Important

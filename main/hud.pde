@@ -13,7 +13,7 @@ void drawHud(PGraphics canvas, float dt) {
     hpBarCaution.update(dt);
     hpBarCriticalText.update(dt);
     hpBarCaution.render(31, 2, canvas);
-    hpBarCriticalText.render(canvasWidth / 2 - 44, 150, canvas);
+    hpBarCriticalText.render(canvasWidth / 2 - 44, 120, canvas);
   }
 
   // draw the text - this is drawn over the first healthbar to make the little segment at the end

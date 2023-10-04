@@ -1,7 +1,7 @@
 /* spiral laser class */
 class SpiralLaser extends EntitySuper {
   private float moveSpeed;
-  private int lastPos;
+  private int lastPos, dmg;
 
   // constructor
   SpiralLaser(float x, float y) {
@@ -11,6 +11,7 @@ class SpiralLaser extends EntitySuper {
     // load other data
     moveSpeed = spiralLaserJson.getFloat("movement speed");
     lastPos = int(y);
+    dmg = spiralLaserJson.getInt("damage");
 
     // set display layer
     displayLayer = -2;
@@ -37,5 +38,12 @@ class SpiralLaser extends EntitySuper {
     // update hitbox position
     hitbox.x = position.x + hboxOffsetX;
     hitbox.y = position.y + hboxOffsetY;
+
+    // check for a collision with the player
+    if (hitbox.intersects(player.hitbox)) {
+      player.damage(dmg);
+      deleteMe = true;
+      return;
+    }
   }
 }

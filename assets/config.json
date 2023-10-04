@@ -72,7 +72,8 @@
         "height": 12
       },
       "movement speed": 35,
-      "max hp": 1
+      "max hp": 1,
+      "damage": 1
     },
     "ufo": {
       "sprite": {

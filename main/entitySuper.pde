@@ -63,8 +63,8 @@ public abstract class EntitySuper {
   }
 
   // called whenever something deals damage to an entity
-  void dealDamage(int damage) {
-    currentHealth -= damage;
+  void damage(int dmg) {
+    currentHealth -= dmg;
     if (currentHealth <= 0) deleteMe = true;
   }
 

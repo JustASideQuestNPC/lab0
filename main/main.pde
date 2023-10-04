@@ -49,6 +49,12 @@ void draw() {
   // remove entities that are no longer needed
   engine.garbageCollect();
 
+  // if the player should be deleted, they are also dead
+  if (player.deleteMe) {
+    println("player is dead");
+    exit();
+  }
+
   // draw pixelated things to the canvas
   pixelCanvas.beginDraw();
     // after beginDraw, drawing to a PGraphics object works exactly the same as drawing
