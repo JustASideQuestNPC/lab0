@@ -25,8 +25,8 @@ void setup() {
   // engine setup - this is for debugging and will be removed/replaced later
   clock = new GameClock();
   engine = new GameEngine();
-  player = engine.addEntity(new Player(98, 170));
-  engine.addEntity(new Ufo(98, 20));
+  player = engine.addEntity(new Player(canvasWidth / 2, 170));
+  engine.addEntity(new Ufo(canvasWidth / 2, 30));
 }
 
 void draw() {

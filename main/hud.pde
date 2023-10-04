@@ -8,10 +8,12 @@ void drawHud(PGraphics canvas, float dt) {
     canvas.image(hpBarSegment, i * 12 + 19, 2);
   }
 
-  // draw and update the caution indicator if the player is at 1 hp
+  // draw and update the caution indicator and caution text if the player is at 1 hp
   if (player.currentHealth <= 1) {
     hpBarCaution.update(dt);
+    hpBarCriticalText.update(dt);
     hpBarCaution.render(31, 2, canvas);
+    hpBarCriticalText.render(canvasWidth / 2 - 44, 150, canvas);
   }
 
   // draw the text - this is drawn over the first healthbar to make the little segment at the end

@@ -102,6 +102,13 @@
     "frame width": 51,
     "frame height": 7
   },
+  "healthbar critical text sprite": {
+    "sprite sheet": "../assets/sprites/critical-damage-text.png",
+    "frames": 2,
+    "frame rate": 2,
+    "frame width": 89,
+    "frame height": 7
+  },
   "controls": [
     {"name": "move up",     "keys": ["w", "up"],    "mode": "continuous"},
     {"name": "move down",   "keys": ["s", "down"],  "mode": "continuous"},

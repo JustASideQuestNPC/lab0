@@ -6,7 +6,7 @@ void loadConfig(String path) {
   // load the entire config file into a variable
   JSONObject config = loadJSONObject(path);
   
-  // load graphics config + hud images
+  // load graphics config and hud images
   print("loading graphics config...");
   targetFramerate = config.getInt("target framerate");
 
@@ -14,6 +14,8 @@ void loadConfig(String path) {
   hpBarText = loadImage("../assets/sprites/healthbar-text.png");
   hpBarSegment = loadImage("../assets/sprites/healthbar-segment.png");
   hpBarCaution = new AnimatedSprite(config.getJSONObject("healthbar caution sprite"));
+  hpBarCriticalText = new AnimatedSprite(config.getJSONObject("healthbar critical text sprite"));
+  hpBarCriticalText.currentFrame = 1;
   println("complete");
 
   // load debug toggles

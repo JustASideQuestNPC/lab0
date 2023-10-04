@@ -35,4 +35,4 @@ InputHandler inputs;
 
 /* hud stuff */
 PImage hpBarBackground, hpBarText, hpBarSegment;
-AnimatedSprite hpBarCaution;
+AnimatedSprite hpBarCaution, hpBarCriticalText;
