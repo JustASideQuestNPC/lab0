@@ -7,12 +7,13 @@ class Speedline extends EntitySuper {
   Speedline(int l, int s) {
     // speedlines don't have an associated json config, but the parent constructor will
     // skip loading anything from it if it's null
-    super(null, random(5, canvasWidth - 5), random(canvasHeight), new EntityTag[]{EntityTag.PARTICLE});
+    super(null, random(5, canvasWidth - 5), random(canvasHeight), new EntityTag[]{EntityTag.PARTICLE, EntityTag.PURGE_EXEMPT});
 
     // set other data
     length = l;
     speed = s;
-    lineColor = coinFlip() ? gray : coinFlip() ? lightGray : darkGray;
+    lineColor = lightGray;
+    // lineColor = coinFlip() ? gray : coinFlip() ? lightGray : darkGray;
     displayLayer = -3;
   }
 
@@ -25,7 +26,8 @@ class Speedline extends EntitySuper {
       // wrap back to the top at a random horizontal position
       position.set(random(5, canvasWidth - 5), random(-50, 0));
       // set a random color
-      lineColor = coinFlip() ? gray : coinFlip() ? lightGray : darkGray;
+      lineColor = lightGray;
+      // lineColor = coinFlip() ? gray : coinFlip() ? lightGray : darkGray;
     }
   }
 
@@ -38,6 +40,12 @@ class Speedline extends EntitySuper {
     canvas.stroke(lineColor);
 
     canvas.strokeWeight(1);
-    canvas.line(position.x, position.y - length, position.x, position.y);
+    
+    if (length == 1) {
+      canvas.point(floor(position.x), floor(position.y));
+    }
+    else {
+      canvas.line(floor(position.x), floor(position.y - length), floor(position.x), floor(position.y));
+    }
   }
 }

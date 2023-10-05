@@ -1,6 +1,6 @@
 {
   "debug": {
-    "show fps": true,
+    "show fps": false,
     "show hitboxes": false,
     "disable speedlines": false
   },

@@ -9,17 +9,23 @@ void loadConfig(String path) {
   // load graphics config and hud images
   print("loading graphics config...");
   JSONObject graphics = config.getJSONObject("graphics");
-  targetFramerate = graphics.getInt("target framerate");
+
+  // load speedline configs
   speedlineLengths = jsonToIntArray(graphics.getJSONArray("speedline lengths"));
   speedlineSpeeds = jsonToIntArray(graphics.getJSONArray("speedline speeds"));
   speedlinesPerLayer = jsonToIntArray(graphics.getJSONArray("speedlines per layer"));
 
+  // load hud assets
   hpBarBackground = loadImage("../assets/sprites/healthbar-background.png");
-  hpBarText = loadImage("../assets/sprites/healthbar-text.png");
   hpBarSegment = loadImage("../assets/sprites/healthbar-segment.png");
   hpBarCaution = new AnimatedSprite(config.getJSONObject("healthbar caution sprite"));
-  hpBarCriticalText = new AnimatedSprite(config.getJSONObject("healthbar critical text sprite"));
-  hpBarCriticalText.currentFrame = 1;
+  
+  // load font
+  font = loadFont("../assets/monogram-extended-48.vlw");
+
+  // load misc data
+  targetFramerate = graphics.getInt("target framerate");
+
   println("complete");
 
   // load debug toggles
@@ -28,7 +34,7 @@ void loadConfig(String path) {
   showFPSTracker = debug.getBoolean("show fps");
   showHitboxes = debug.getBoolean("show hitboxes");
   noSpeedlines = debug.getBoolean("disable speedlines");
-  println("complete");
+  
 
   // load color palette
   print("loading colors...");

@@ -54,8 +54,8 @@ public class GameEngine {
       // add new entities to the engine (like when the player fires a missile),
       // and doing that in the middle of a forEach will instantly throw an error
       // and freeze the window until task manager kills it :/
-      entities.forEach((ent) -> {
-        if (ent.displayLayer == layer) ent.render(canvas);
+      entities.forEach((e) -> {
+        if (e.displayLayer == layer) e.render(canvas);
       });
     }
   }
@@ -65,8 +65,19 @@ public class GameEngine {
     entities.removeIf(e -> (e.deleteMe));
   };
 
-  // clears the entity list
+  // removes all entities from the entity list. if ignoreTags is false, entities
+  // with the PURGE_EXEMPT tag are not removed
+  void purgeEntities(boolean ignoreTags) {
+    if (ignoreTags) {
+      entities.clear();
+    }
+    else {
+      entities.removeIf(e -> !e.hasTag(EntityTag.PURGE_EXEMPT));
+    }
+  }
+
+  // overload to make ignoreTags default to false
   void purgeEntities() {
-    entities.clear();
+    purgeEntities(false);
   }
 }

@@ -9,6 +9,7 @@ void setup() {
 
   // noSmooth() prevents images from becoming blurred when scaled up and makes them become pixelated instead
   noSmooth();
+  pixelCanvas.noSmooth();
 
   // initialize the input handler
   inputs = new InputHandler();
@@ -56,6 +57,7 @@ void draw() {
 
   // draw pixelated things to the canvas
   pixelCanvas.beginDraw();
+    pixelCanvas.textFont(font, 16);
     // after beginDraw, drawing to a PGraphics object works exactly the same as drawing
     // to the normal window, except that everything starts with "name."
     pixelCanvas.background(black);
@@ -70,6 +72,6 @@ void draw() {
   // PGraphics objects can be drawn to the screen in the same way as PImage objects
   image(pixelCanvas, 0, 0, width, height);
 
-  // draw the framerate tracker over the upscaled image if it is enabled
+  // draw the framerate tracker over the upscaled image if it is
   if (showFPSTracker) fpsTracker.display(0, 0, 1.5);
 }

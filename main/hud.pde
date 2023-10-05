@@ -8,14 +8,22 @@ void drawHud(PGraphics canvas, float dt) {
     canvas.image(hpBarSegment, i * 12 + 19, 2);
   }
 
+  canvas.noStroke();
+
   // draw and update the caution indicator and caution text if the player is at 1 hp
   if (player.currentHealth <= 1) {
     hpBarCaution.update(dt);
-    hpBarCriticalText.update(dt);
     hpBarCaution.render(31, 2, canvas);
-    hpBarCriticalText.render(canvasWidth / 2 - 44, 120, canvas);
+    canvas.fill(hpBarCaution.currentFrame == 0 ? white : orange);
+    canvas.textAlign(CENTER, TOP);
+    canvas.text("CRITICAL DAMAGE", canvasWidth / 2, 120);
   }
 
   // draw the text - this is drawn over the first healthbar to make the little segment at the end
-  canvas.image(hpBarText, 2, 2);
+  canvas.fill(black);
+  canvas.rect(1, 1, 26, 8);
+
+  canvas.fill(white);
+  canvas.textAlign(LEFT, TOP);
+  canvas.text("HULL", 2, 2);
 }

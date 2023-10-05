@@ -2,7 +2,7 @@
 // this loads some extra entities like the speedline particles, and is called once at the end of setup()
 void initializeEntityList() {
   // remove all entities from the engine - it probably won't be holding any, but better safe than sorry
-  engine.purgeEntities();
+  engine.purgeEntities(true);
 
   // this is hard-coded for debug purposes and will be reworked or removed later
   player = engine.addEntity(new Player(canvasWidth / 2, 170));

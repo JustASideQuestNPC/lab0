@@ -11,11 +11,15 @@ public class FPSTracker {
   private float[] frameTimes;
   // the index to store the next frame time in
   private int frameIndex = 0;
+  // display font
+  private PFont displayFont;
 
   // constructor
   FPSTracker() {
     // initialize the frame times array - items in an int array default to 0, so there's no need to set them
     frameTimes = new float[frameBufferSize];
+
+    displayFont = createFont("Calibri", 12);
   }
 
   // updates the frame tracker with the time since the last frame
@@ -47,8 +51,8 @@ public class FPSTracker {
         fill(fpsTrackerBackgroundColor);
         rect(0, 0, 150, 30);
         fill(fpsTrackerTextColor);
+        textFont(displayFont);
         textAlign(LEFT, TOP);
-        textSize(12);
         text("time since last frame: " + lastTimeDelta + "ms\nest. framerate: " + estimatedFramerate + "fps", 5, 2);
       popMatrix();
     popStyle();

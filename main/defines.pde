@@ -13,6 +13,7 @@ PGraphics pixelCanvas;                // anything pixelated is drawn to this bef
 color black, purple, red, orange, yellow, lime, green, teal, blue, lightBlue, darkBlue, cyan, white, gray, lightGray, darkGray, transparent;
 // speedline configs
 int[] speedlineLengths, speedlineSpeeds, speedlinesPerLayer;
+PFont font;
 
 /* config vars - these are set from config.json during setup() */
 String configPath = "../assets/config.json";  // the path to the .json file containing settings and other data
@@ -41,5 +42,5 @@ JSONObject ufoJson;
 InputHandler inputs;
 
 /* hud stuff */
-PImage hpBarBackground, hpBarText, hpBarSegment;
-AnimatedSprite hpBarCaution, hpBarCriticalText;
+PImage hpBarBackground, hpBarSegment;
+AnimatedSprite hpBarCaution;

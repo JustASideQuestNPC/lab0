@@ -8,6 +8,7 @@ public enum EntityTag {
   MISSILE,
   UFO,
   SPIRAL_LASER,
-  ENEMY,
-  PARTICLE
+  ENEMY,        // entities with this tag can be damaged by player missiles
+  PARTICLE,
+  PURGE_EXEMPT  // entities with this tag will not be removed by GameEngine.purgeEntities(), unless ignoreTags is set to true
 };
