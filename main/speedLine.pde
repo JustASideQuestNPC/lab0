@@ -5,7 +5,7 @@ class Speedline extends EntitySuper {
 
   // constructor
   Speedline(int l, int s) {
-    // Speedlines don't have an associated json config, but the parent constructor will
+    // speedlines don't have an associated json config, but the parent constructor will
     // skip loading anything from it if it's null
     super(null, random(5, canvasWidth - 5), random(canvasHeight), new EntityTag[]{EntityTag.PARTICLE});
 
@@ -30,7 +30,7 @@ class Speedline extends EntitySuper {
   }
 
   // @Override isn't required here - this will compile and run just fine without it - but
-  // it's a good way to indicate that Speedline's render method replaces ("overrides") the
+  // it's a good way to indicate that the speedline render method replaces ("overrides") the
   // render method from its parent class (the reason the update methods don't have this is
   // because update is abstract and isn't defined in the parent class, so it will always
   // be an override).

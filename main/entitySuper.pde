@@ -18,6 +18,9 @@ public abstract class EntitySuper {
   // entities that are no longer necessary are removed from the engine to free up memory and improve performance
   boolean deleteMe;
 
+  // all enemies hold a reference to the manager that added them
+  EnemyManager manager = null;
+
   // base constructor that is shared by all entities
   EntitySuper(JSONObject entityJson, float x, float y, EntityTag[] tagList) {
     position = new PVector(x, y);
@@ -74,8 +77,14 @@ public abstract class EntitySuper {
   // called whenever something deals damage to an entity
   void damage(int dmg) {
     currentHealth -= dmg;
-    if (currentHealth <= 0) deleteMe = true;
+    if (currentHealth <= 0) {
+      deleteMe = true;
+      onDeath();
+    };
   }
+
+  // called whenever an entity dies
+  void onDeath() { return; }
 
   // returns whether the entity has a tag
   boolean hasTag(EntityTag t) {

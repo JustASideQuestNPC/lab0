@@ -6,7 +6,10 @@ void initializeEntityList() {
 
   // this is hard-coded for debug purposes and will be reworked or removed later
   player = engine.addEntity(new Player(canvasWidth / 2, 170));
-  engine.addEntity(new Ufo(canvasWidth / 2, 30));
+  
+  // add an enemy manager, then update it to populate the entity list with enemies
+  EnemyManager manager = engine.addEntity(new EnemyManager());
+  manager.update(0);
 
   // stop execution if speedlines are disabled, otherwise create a bunch of speedlines
   if (noSpeedlines) return;

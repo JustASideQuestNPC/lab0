@@ -1,6 +1,6 @@
 {
   "debug": {
-    "show fps": false,
+    "show fps": true,
     "show hitboxes": false,
     "disable speedlines": false
   },
@@ -27,6 +27,10 @@
     "gray":       "ff566c86",
     "light gray": "ff94b0c2",
     "dark gray":  "ff333c57"
+  },
+  "gameplay": {
+    "max ufos": 8,
+    "ufo spawn heights": [20, 30, 40]
   },
   "entities": {
     "player": {
@@ -95,7 +99,7 @@
         "width": 18,
         "height": 3
       },
-      "movement speed": 30,
+      "movement speed": 50,
       "max hp": 1,
       "shot interval": 2,
       "shot chance": 50,

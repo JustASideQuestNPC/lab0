@@ -78,4 +78,9 @@ class Ufo extends EntitySuper {
     hitbox.x = position.x + hboxOffsetX;
     hitbox.y = position.y + hboxOffsetY;
   }
+
+  @Override void onDeath() {
+    // decrement the enemy manager's counter
+    --manager.numUfos;
+  }
 }

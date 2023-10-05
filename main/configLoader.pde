@@ -88,6 +88,7 @@ void loadConfig(String path) {
 
   // load entity data
   print("loading entity data...");
+  gameplayJson = config.getJSONObject("gameplay");
   JSONObject entityJson = config.getJSONObject("entities");
   playerJson = entityJson.getJSONObject("player");
   missileJson = entityJson.getJSONObject("missile");

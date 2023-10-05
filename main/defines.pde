@@ -2,7 +2,7 @@
   * NOTE: if you have a variable that's a constant (i.e. it will never be changed),
   * it's convention to make it "static final" */
 
-/* canvas/graphics declarations */
+/* canvas */
 static final int canvasWidth = 240;   // max drawable width
 static final int canvasHeight = 180;  // max drawable height
 static final int pixelSize = 4;       // how large each pixel is
@@ -31,6 +31,7 @@ GameEngine engine;
 Player player; // used mainly for drawing the hud, also referenced by other entitites
 
 /* entity data set from config.json */
+JSONObject gameplayJson;
 JSONObject playerJson;
 JSONObject missileJson;
 JSONObject spiralLaserJson;
