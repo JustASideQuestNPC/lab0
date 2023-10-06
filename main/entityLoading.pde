@@ -1,15 +1,8 @@
 /* functions for loading entities into the engine */
-// this loads some extra entities like the speedline particles, and is called once at the end of setup()
+// this loads persistent entities like the speedline particles, and is called once at the end of setup()
 void initializeEntityList() {
   // remove all entities from the engine - it probably won't be holding any, but better safe than sorry
   engine.purgeEntities(true);
-
-  // this is hard-coded for debug purposes and will be reworked or removed later
-  player = engine.addEntity(new Player(canvasWidth / 2, 170));
-  
-  // add an enemy manager, then update it to populate the entity list with enemies
-  EnemyManager manager = engine.addEntity(new EnemyManager());
-  manager.update(0);
 
   // stop execution if speedlines are disabled, otherwise create a bunch of speedlines
   if (noSpeedlines) return;
@@ -19,4 +12,16 @@ void initializeEntityList() {
       engine.addEntity(new Speedline(speedlineLengths[i], speedlineSpeeds[i]));
     }
   }
+}
+
+// reloads the player, enemy manager, and enemies
+void reloadGame() {
+  // ensure all non-persistent entities have been removed from the list
+  engine.purgeEntities();
+
+  player = engine.addEntity(new Player(canvasWidth / 2, 170));
+  
+  EnemyManager manager = engine.addEntity(new EnemyManager());
+  manager.update(0); // update the manager manually to spawn all enemies
+
 }

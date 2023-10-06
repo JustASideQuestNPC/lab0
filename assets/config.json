@@ -125,6 +125,8 @@
     {"name": "move down",   "keys": ["s", "down"],  "mode": "continuous"},
     {"name": "move left",   "keys": ["a", "left"],  "mode": "continuous"},
     {"name": "move right",  "keys": ["d", "right"], "mode": "continuous"},
-    {"name": "shoot",       "keys": ["z", "k"],     "mode": "continuous"}
+    {"name": "shoot",       "keys": ["z", "k"],     "mode": "continuous"},
+    {"name": "menu 1",      "keys": ["z", "k"],     "mode": "press only"},
+    {"name": "menu 2",      "keys": ["x", "l"],     "mode": "press only"}
   ]
 }

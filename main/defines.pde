@@ -30,6 +30,7 @@ float dt; // time since the last update in milliseconds
 GameClock clock;
 GameEngine engine;
 Player player; // used mainly for drawing the hud, also referenced by other entitites
+GameState gameState;
 
 /* entity data set from config.json */
 JSONObject gameplayJson;
