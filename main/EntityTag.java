@@ -5,10 +5,11 @@
  */
 public enum EntityTag {
   PLAYER,
-  MISSILE,
   UFO,
+  DIVER,
+  MISSILE,
   SPIRAL_LASER,
-  ENEMY,        // entities with this tag can be damaged by player missiles
   PARTICLE,
-  PURGE_EXEMPT  // entities with this tag will not be removed by GameEngine.purgeEntities(), unless ignoreTags is set to true
+  ENEMY,        // entities with this tag can be damaged by player missiles
+  PURGE_EXEMPT, // entities with this tag will not be removed by GameEngine.purgeEntities(), unless ignoreTags is set to true
 };

@@ -38,6 +38,7 @@ JSONObject playerJson;
 JSONObject missileJson;
 JSONObject spiralLaserJson;
 JSONObject ufoJson;
+JSONObject diverJson;
 
 /* input stuff */
 InputHandler inputs;

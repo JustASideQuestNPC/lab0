@@ -100,6 +100,7 @@ void loadConfig(String path) {
   missileJson = entityJson.getJSONObject("missile");
   spiralLaserJson = entityJson.getJSONObject("spiral laser");
   ufoJson = entityJson.getJSONObject("ufo");
+  diverJson = entityJson.getJSONObject("diver");
   println("complete");
 
   println("config loaded successfully in " + (millis() - startTime) + "ms");

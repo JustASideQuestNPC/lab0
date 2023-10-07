@@ -19,9 +19,8 @@ void reloadGame() {
   // ensure all non-persistent entities have been removed from the list
   engine.purgeEntities();
 
-  player = engine.addEntity(new Player(canvasWidth / 2, 170));
+  player = engine.addEntity(new Player(canvasWidth / 2, canvasHeight - 15));
   
   EnemyManager manager = engine.addEntity(new EnemyManager());
   manager.update(0); // update the manager manually to spawn all enemies
-
 }

@@ -1,7 +1,7 @@
 {
   "debug": {
     "show fps": false,
-    "show hitboxes": false,
+    "show hitboxes": true,
     "disable speedlines": false
   },
   "graphics": {
@@ -30,7 +30,8 @@
   },
   "gameplay": {
     "max ufos": 8,
-    "ufo spawn heights": [20, 30, 40]
+    "ufo spawn heights": [20, 30, 40],
+    "max divers": 1
   },
   "entities": {
     "player": {
@@ -47,7 +48,7 @@
         "width": 13,
         "height": 6
       },
-      "movement speed": 80,
+      "movement speed": 120,
       "shot delay": 0.5,
       "max hp": 5
     },
@@ -104,6 +105,26 @@
       "shot interval": 2,
       "shot chance": 50,
       "shot spawn offset": [0, 8]
+    },
+    "diver": {
+      "sprite": {
+        "sprite sheet": "../assets/sprites/diver.png",
+        "frames": 16,
+        "frame rate": 0,
+        "frame width": 17,
+        "frame height": 17
+      },
+      "hitbox": {
+        "x": -2,
+        "y": -2,
+        "width": 4,
+        "height": 4
+      },
+      "movement speed": 120,
+      "rotation speed": 60,
+      "spawn lag": 0.5,
+      "damage": 1,
+      "max hp": 1
     }
   },
   "healthbar caution sprite": {
