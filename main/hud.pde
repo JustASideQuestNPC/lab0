@@ -26,4 +26,7 @@ void drawHud(PGraphics canvas, float dt) {
   canvas.fill(white);
   canvas.textAlign(LEFT, TOP);
   canvas.text("HULL", 2, 2);
+
+  canvas.textAlign(RIGHT, TOP);
+  canvas.text(playerScore, canvasWidth - 2, 2);
 }

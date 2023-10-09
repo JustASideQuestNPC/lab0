@@ -23,4 +23,6 @@ void reloadGame() {
   
   EnemyManager manager = engine.addEntity(new EnemyManager());
   manager.update(0); // update the manager manually to spawn all enemies
+
+  playerScore = 0;
 }

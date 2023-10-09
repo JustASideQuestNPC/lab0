@@ -130,6 +130,7 @@ void draw() {
 
         pixelCanvas.textSize(16);
         pixelCanvas.text("Press Z or K to Try Again\nPress Alt+F4 to Quit", canvasWidth / 2, 2 * canvasHeight / 3);
+        pixelCanvas.text("Your Score: " + playerScore, canvasWidth / 2, canvasHeight / 4 + 16);
         break;
     }
 

@@ -1,7 +1,7 @@
 /* diving enemy class */
 class Diver extends EntitySuper {
   private float angle, moveSpeed, turnSpeed, spawnLagTimer;
-  private int dmg;
+  private int dmg, score;
 
   Diver(float x, float y) {
     // call the parent constructor
@@ -12,6 +12,7 @@ class Diver extends EntitySuper {
     turnSpeed = radians(diverJson.getFloat("rotation speed"));
     spawnLagTimer = diverJson.getFloat("spawn lag");
     dmg = diverJson.getInt("damage");
+    score = diverJson.getInt("score");
 
     angle = PI * 3 / 2;
 
@@ -87,6 +88,7 @@ class Diver extends EntitySuper {
   }
 
   @Override void onDeath() {
+    playerScore += score;
     --manager.numDivers;
   }
 }

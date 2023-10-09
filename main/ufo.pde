@@ -1,7 +1,7 @@
 /* the ufo is a basic enemy that fires untargeted lasers */
 class Ufo extends EntitySuper {
   private float moveSpeed, shotInterval, shotTimer;
-  private int moveDirection, shotChance;
+  private int moveDirection, shotChance, score;
   private boolean firing;
   private PVector shotOffset;
 
@@ -28,6 +28,8 @@ class Ufo extends EntitySuper {
     // lasers are positioned to line up with the firing animation when they spawn
     JSONArray shotOffsetRaw = ufoJson.getJSONArray("shot spawn offset");
     shotOffset = new PVector(shotOffsetRaw.getFloat(0), shotOffsetRaw.getFloat(1));
+
+    score = ufoJson.getInt("score");
 
     // set display layer
     displayLayer = 0;
@@ -80,6 +82,7 @@ class Ufo extends EntitySuper {
   }
 
   @Override void onDeath() {
+    playerScore += score;
     // decrement the enemy manager's counter
     --manager.numUfos;
   }
