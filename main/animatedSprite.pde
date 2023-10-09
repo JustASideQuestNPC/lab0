@@ -95,7 +95,7 @@ public class AnimatedSprite {
   // gets the current frame
   int getFrameIndex() { return currentFrame; }
 
-  // moves the animation forward (relative to the play direction) by so many frames (to move backward,
+  // moves the animation forward by so many frames (to move backward,
   // use a negative number). will wrap to the beginning/end of the animation if looping is enabled
   void advanceFrame(int f) {
     currentFrame += f;

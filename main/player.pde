@@ -4,16 +4,26 @@ public class Player extends EntitySuper {
 
   // for timing missile shots
   private float shotDelay, shotTimer;
+
+  // the player briefly becomes invincible after taking damage
+  private float iFrames, iFrameFlashTimer, iFrameFlashSpeed, maxIFrames;
   
   // constructor
   Player(float x, float y) {
     // call the parent constructor to set position, load the sprite, and create the tag list
     super(playerJson, x, y, new EntityTag[]{EntityTag.PLAYER});
+    sprite.playDirection = 0; // the player's sprite is only updated during the i-frame flashing
 
     // load other data
     moveSpeed = playerJson.getInt("movement speed");
+
     shotDelay = playerJson.getFloat("shot delay");
     shotTimer = 0;
+
+    maxIFrames = playerJson.getFloat("i-frames per hit");
+    iFrameFlashSpeed = playerJson.getFloat("i-frame flash speed");
+    iFrames = maxIFrames;
+    iFrameFlashTimer = iFrameFlashSpeed;
 
     // set display layer
     displayLayer = 0;
@@ -21,6 +31,23 @@ public class Player extends EntitySuper {
   
   // called every frame to update position, hitboxes, etc.
   void update(float dt) {
+    // decrement i-frames if the player has any
+    if (iFrames > 0) {
+      iFrames -= dt;
+
+      // update the sprite
+      iFrameFlashTimer -= dt;
+      if (iFrameFlashTimer <= 0) {
+        iFrameFlashTimer = iFrameFlashSpeed;
+        sprite.advanceFrame(1);
+      }
+
+      // if the player is out of i-frames, make sure their sprite is visible
+      if (iFrames <= 0) {
+        sprite.setFrame(0);
+      }
+    }
+
     // update sprite animation
     sprite.update(dt);
 
@@ -62,5 +89,17 @@ public class Player extends EntitySuper {
     // update hitbox position
     hitbox.x = position.x + hboxOffsetX;
     hitbox.y = position.y + hboxOffsetY;
+  }
+
+  // override to prevent taking damage if the player has i-frames
+  @Override void damage(int dmg) {
+    if (iFrames <= 0) {
+      currentHealth -= dmg;
+      if (currentHealth <= 0) {
+        deleteMe = true;
+      }
+      iFrames = maxIFrames;
+      iFrameFlashTimer = iFrameFlashSpeed;
+    }
   }
 }

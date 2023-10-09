@@ -1,7 +1,7 @@
 {
   "debug": {
     "show fps": false,
-    "show hitboxes": true,
+    "show hitboxes": false,
     "disable speedlines": false
   },
   "graphics": {
@@ -37,7 +37,7 @@
     "player": {
       "sprite": {
         "sprite sheet": "../assets/sprites/spacefighter.png",
-        "frames": 1,
+        "frames": 2,
         "frame rate": 8,
         "frame width": 16,
         "frame height": 14
@@ -50,7 +50,9 @@
       },
       "movement speed": 120,
       "shot delay": 0.5,
-      "max hp": 5
+      "max hp": 5,
+      "i-frames per hit": 0.9,
+      "i-frame flash speed": 0.075
     },
     "missile": {
       "sprite": {

@@ -80,7 +80,7 @@ public abstract class EntitySuper {
     if (currentHealth <= 0) {
       deleteMe = true;
       onDeath();
-    };
+    }
   }
 
   // called whenever an entity dies
