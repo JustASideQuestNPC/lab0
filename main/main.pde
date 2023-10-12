@@ -1,7 +1,15 @@
 /* setup and draw functions */
 void setup() {
-  // create the window and set it to the correct size
+  // create the window
   size(100, 100);
+
+  // initialize the input handler
+  inputs = new InputHandler();
+
+  // load the config file from the data folder
+  loadConfig(configPath);
+
+  // set the window to the correct size
   windowResize(canvasWidth * pixelSize, canvasHeight * pixelSize);
 
   // initialize the canvas to draw pixels to
@@ -10,12 +18,6 @@ void setup() {
   // noSmooth() prevents images from becoming blurred when scaled up and makes them become pixelated instead
   noSmooth();
   pixelCanvas.noSmooth();
-
-  // initialize the input handler
-  inputs = new InputHandler();
-
-  // load the config file from the data folder
-  loadConfig(configPath);
 
   // set the target framerate
   frameRate(targetFramerate);
@@ -140,5 +142,5 @@ void draw() {
   image(pixelCanvas, 0, 0, width, height);
 
   // draw the framerate tracker over the upscaled image if it is
-  if (showFPSTracker) fpsTracker.display(0, 0, 1.5);
+  if (showFPSTracker) fpsTracker.display(0, 11 * pixelSize, pixelSize / 3);
 }

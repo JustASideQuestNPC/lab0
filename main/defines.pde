@@ -3,10 +3,10 @@
   * it's convention to make it "static final" */
 
 /* canvas */
-static final int canvasWidth = 240;   // max drawable width
-static final int canvasHeight = 180;  // max drawable height
-static final int pixelSize = 4;       // how large each pixel is
-PGraphics pixelCanvas;                // anything pixelated is drawn to this before being upscaled and drawn to the screen
+int canvasWidth;        // max drawable width
+int canvasHeight;       // max drawable height
+int pixelSize;          // how large each pixel is
+PGraphics pixelCanvas;  // anything pixelated is drawn to this before being upscaled and drawn to the screen
 
 /* graphics */
 // the color palette used in all sprites - i'm using the Sweetie 16 palette by Grafxkid (lospec.com/palette-list/sweetie-16) for this lab

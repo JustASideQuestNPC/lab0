@@ -1,10 +1,12 @@
 {
   "debug": {
-    "show fps": false,
+    "show fps": true,
     "show hitboxes": false,
     "disable speedlines": false
   },
   "graphics": {
+    "canvas size": [240, 180],
+    "pixel size": 6,
     "target framerate": 60,
     "speedline lengths": [1, 5, 10, 15, 25, 40],
     "speedline speeds": [30, 50, 100, 150, 250, 500],

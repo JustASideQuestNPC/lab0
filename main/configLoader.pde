@@ -9,6 +9,13 @@ void loadConfig(String path) {
   // load graphics config and hud images
   print("loading graphics config...");
   JSONObject graphics = config.getJSONObject("graphics");
+  
+  // load canvas size and pixel size
+  int[] canvasSize = jsonToIntArray(graphics.getJSONArray("canvas size"));
+  canvasWidth = canvasSize[0];
+  canvasHeight = canvasSize[1];
+  pixelSize = graphics.getInt("pixel size");
+
 
   // load speedline configs
   speedlineLengths = jsonToIntArray(graphics.getJSONArray("speedline lengths"));
