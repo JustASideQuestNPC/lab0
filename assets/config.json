@@ -7,7 +7,7 @@
   "graphics": {
     "canvas size": [240, 180],
     "pixel size": 6,
-    "target framerate": 60,
+    "target framerate": 999,
     "speedline lengths": [1, 5, 10, 15, 25, 40],
     "speedline speeds": [30, 50, 100, 150, 250, 500],
     "speedlines per layer": [5, 3, 2, 2, 1, 1]

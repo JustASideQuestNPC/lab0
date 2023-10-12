@@ -47,9 +47,8 @@ void draw() {
   // all other updates expect dt in seconds
   dt /= 1000;
 
-  // update all loaded entities - the clock returns dt in milliseconds for extra precision, but 
-  // game entities expect it in seconds
-  engine.updateAll(dt);
+  UpdateThread updateThread = new UpdateThread(dt);
+  updateThread.start();  
 
   // do different updates based on the game state - switch statements function identically to
   // if/else if chains, but they're significantly faster (and more readable imo)
@@ -136,6 +135,13 @@ void draw() {
         break;
     }
 
+    try {
+      updateThread.join();
+    }
+    catch (InterruptedException e) {
+      println("WARNING: Update thread failed");
+    }
+
   pixelCanvas.endDraw();
 
   // PGraphics objects can be drawn to the screen in the same way as PImage objects
@@ -143,4 +149,16 @@ void draw() {
 
   // draw the framerate tracker over the upscaled image if it is
   if (showFPSTracker) fpsTracker.display(0, 11 * pixelSize, pixelSize / 3);
+}
+
+class UpdateThread extends Thread {
+  float dt;
+  
+  public UpdateThread(float dt) {
+    this.dt = dt;
+  }
+
+  public void run() {
+    engine.updateAll(dt);
+  }
 }

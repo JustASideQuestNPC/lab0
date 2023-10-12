@@ -36,28 +36,25 @@ public class GameEngine {
 
   // updates all loaded entities
   void updateAll(float dt) {
+    println("updating entities...");
     // calls the update method of every entity in the list
     for (int i = 0; i < entities.size(); ++i) {
       entities.get(i).update(dt);
     }
+    println("update complete");
   }
 
   // draws all loaded entities to the given canvas object
   void renderAll(PGraphics canvas) {
+    println("rendering entities...");
     // repeatedly loop through the entities and draw them layer by layer
     for (int i = minDisplayLayer; i <= maxDisplayLayer; ++i) {
       final int layer = i;
-      // forEach does basically the same thing as updateAll does: it loops
-      // through an array and does something to every item in it (in this case,
-      // it renders each entity on the current display later). If you're
-      // wondering why I didn't use this in updateAll, it's because some entities
-      // add new entities to the engine (like when the player fires a missile),
-      // and doing that in the middle of a forEach will instantly throw an error
-      // and freeze the window until task manager kills it :/
-      entities.forEach((e) -> {
-        if (e.displayLayer == layer) e.render(canvas);
-      });
+      for (int j = 0; j < entities.size(); ++j) {
+        entities.get(j).render(canvas);
+      }
     }
+    println("rendering complete");
   }
 
   // removes entities that are no longer needed
